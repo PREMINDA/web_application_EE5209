@@ -2,14 +2,22 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FormInput from "../../Components/FormInput/FormInput";
 import MyToggle from "../../Components/Switch/Switch";
-import { XCircleIcon } from "@heroicons/react/outline";
 import { addNewUser } from "../../redux/action/newUserAction";
 import useForm from "../../CustomHook/useForm";
-
+import validateInfo from "../../CustomHook/validateInfo";
+import Dangermsg from "../../Components/DangerMsg/Dangermsg";
 const NewUser = ({ history }) => {
-  const [reEnterPasword, setreEnterPasword] = useState("");
   const [enabled, setEnabled] = useState();
-  const { handleChange, valuses } = useForm();
+
+  const {
+    handleChange,
+    valuses,
+    setValues,
+    checkValidation,
+    errors,
+    canSubmit,
+    setcanSubmit,
+  } = useForm(validateInfo);
 
   const newAddUser = useSelector((state) => state.newUser);
   const { addnewUser } = newAddUser;
@@ -17,19 +25,19 @@ const NewUser = ({ history }) => {
 
   useEffect(() => {
     if (addnewUser) {
-      setnewUserInput("");
-      setreEnterPasword("");
+      setValues("");
+      setcanSubmit(false);
       history.push("/dashboard/users");
     }
   }, [addnewUser]);
-  const [newUserInput, setnewUserInput] = useState({
-    username: "",
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-  });
-  const { username, email, password, firstName, lastName } = valuses;
+  const {
+    username,
+    email,
+    password,
+    firstName,
+    lastName,
+    repassword,
+  } = valuses;
 
   // useEffect(() => {
   //   setEnabled(false);
@@ -37,18 +45,22 @@ const NewUser = ({ history }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    checkValidation();
     const new1 = {
-      ...newUserInput,
+      ...valuses,
       role: enabled ? "ROLE_SUPER_ADMIN" : "ROLE_USER",
     };
+    console.log();
+    delete new1.repassword;
     console.log(new1);
-    dispatch(addNewUser(new1));
+
+    //dispatch(addNewUser(new1));
   };
 
   return (
     <div style={{}} className="w-1/2">
       <div
-        style={{ height: "650px" }}
+        style={{}}
         className="inline-block w-full p-6 my-16 overflow-hidden text-left align-middle transition-all transform bg-lightviolate shadow-xl rounded-2xl"
       >
         <h3 className="text-3xl  font-medium leading-6 text-center text-white">
@@ -63,6 +75,7 @@ const NewUser = ({ history }) => {
             value={username}
             onChange={handleChange}
           />
+          {errors.username ?? <p className="text-red-600">{errors.username}</p>}
           <FormInput
             label="First Name"
             type="text"
@@ -71,6 +84,9 @@ const NewUser = ({ history }) => {
             value={firstName}
             onChange={handleChange}
           />
+          {errors.firstName ?? (
+            <p className="text-red-600">{errors.firstName}</p>
+          )}
           <FormInput
             label="Last Name"
             type="text"
@@ -79,6 +95,7 @@ const NewUser = ({ history }) => {
             value={lastName}
             onChange={handleChange}
           />
+          {errors.lastName ?? <p className="text-red-600">{errors.lastName}</p>}
           <FormInput
             label="Email"
             type="text"
@@ -87,6 +104,7 @@ const NewUser = ({ history }) => {
             value={email}
             onChange={handleChange}
           />
+          {errors.email ?? <p className="text-red-600">{errors.email}</p>}
           <FormInput
             label="Password"
             type="password"
@@ -95,14 +113,18 @@ const NewUser = ({ history }) => {
             value={password}
             onChange={handleChange}
           />
+          {errors.password ?? <p className="text-red-600">{errors.password}</p>}
           <FormInput
             label="Re Enter Password"
             name="repassword"
             type="password"
             placeholder="Re Enter Password"
-            value={reEnterPasword}
-            onChange={(e) => setreEnterPasword(e.target.value)}
+            value={repassword}
+            onChange={handleChange}
           />
+          {errors.repassword ?? (
+            <p className="text-red-600">{errors.repassword}</p>
+          )}
           <div className="flex mt-8 justify-between">
             <h1 className="text-base mr-10 text-white">Is Admin</h1>
             <MyToggle enabled={enabled} setEnabled={setEnabled} />
