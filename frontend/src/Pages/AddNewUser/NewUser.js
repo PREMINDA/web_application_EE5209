@@ -4,10 +4,12 @@ import FormInput from "../../Components/FormInput/FormInput";
 import MyToggle from "../../Components/Switch/Switch";
 import { XCircleIcon } from "@heroicons/react/outline";
 import { addNewUser } from "../../redux/action/newUserAction";
+import useForm from "../../CustomHook/useForm";
 
 const NewUser = ({ history }) => {
   const [reEnterPasword, setreEnterPasword] = useState("");
   const [enabled, setEnabled] = useState();
+  const { handleChange, valuses } = useForm();
 
   const newAddUser = useSelector((state) => state.newUser);
   const { addnewUser } = newAddUser;
@@ -27,19 +29,12 @@ const NewUser = ({ history }) => {
     firstName: "",
     lastName: "",
   });
-  const { username, email, password, firstName, lastName } = newUserInput;
+  const { username, email, password, firstName, lastName } = valuses;
 
   // useEffect(() => {
   //   setEnabled(false);
   // }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setnewUserInput((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const new1 = {
