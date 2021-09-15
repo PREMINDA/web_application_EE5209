@@ -1,9 +1,45 @@
 package com.example.backend.domian.collection;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.io.Serializable;
+import java.util.Arrays;
 
 @Entity
-public class Collection {
+public class Collection implements Serializable {
+
+    public Collection(){
+    }
+
+    public Collection(
+                      String gameId,
+                      String gameName,
+                      String description,
+                      String storyLine,
+                      String[] systemRequirements,
+                      String[] developerInformation,
+                      String price,
+                      String[] imagePaths,
+                      String logoPath,
+                      Boolean availability,
+                      Integer rating,
+                      String[] category,
+                      Date uploadDate) {
+
+        this.gameId = gameId;
+        this.gameName = gameName;
+        this.description = description;
+        this.storyLine = storyLine;
+        this.systemRequirements = systemRequirements;
+        this.developerInformation = developerInformation;
+        this.price = price;
+        this.imagePaths = imagePaths;
+        this.logoPath = logoPath;
+        this.availability = availability;
+        this.rating = rating;
+        this.category = category;
+        this.uploadDate = uploadDate;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +55,7 @@ public class Collection {
     private String price;
     private String[] imagePaths;
     private String logoPath;
+    private Date uploadDate;
     private Boolean availability;
     private Integer rating;
     private String[] category;
@@ -127,34 +164,30 @@ public class Collection {
         this.category = category;
     }
 
-    public Collection(Long id,
-                      String gameId,
-                      String gameName,
-                      String description,
-                      String storyLine,
-                      String[] systemRequirements,
-                      String[] developerInformation,
-                      String price,
-                      String[] imagePaths,
-                      String logoPath,
-                      Boolean availability,
-                      Integer rating,
-                      String[] category) {
-        this.id = id;
-        this.gameId = gameId;
-        this.gameName = gameName;
-        this.description = description;
-        this.storyLine = storyLine;
-        this.systemRequirements = systemRequirements;
-        this.developerInformation = developerInformation;
-        this.price = price;
-        this.imagePaths = imagePaths;
-        this.logoPath = logoPath;
-        this.availability = availability;
-        this.rating = rating;
-        this.category = category;
+    public Date getUploadDate() {
+        return uploadDate;
+    }
 
+    public void setUploadDate(Date uploadDate) {
+        this.uploadDate = uploadDate;
+    }
 
-
+    @Override
+    public String toString() {
+        return "Collection{" +
+                "id=" + id +
+                ", gameId='" + gameId + '\'' +
+                ", gameName='" + gameName + '\'' +
+                ", description='" + description + '\'' +
+                ", storyLine='" + storyLine + '\'' +
+                ", systemRequirements=" + Arrays.toString(systemRequirements) +
+                ", developerInformation=" + Arrays.toString(developerInformation) +
+                ", price='" + price + '\'' +
+                ", imagePaths=" + Arrays.toString(imagePaths) +
+                ", logoPath='" + logoPath + '\'' +
+                ", availability=" + availability +
+                ", rating=" + rating +
+                ", category=" + Arrays.toString(category) +
+                '}';
     }
 }

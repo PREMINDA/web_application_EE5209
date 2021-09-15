@@ -1,6 +1,7 @@
 package com.example.backend.controller;
 
 
+import com.example.backend.domian.collection.Collection;
 import com.example.backend.domian.user.User;
 import com.example.backend.service.collectionservice.CollectionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,11 +24,17 @@ public class CollectionController {
         this.collectionService = collectionService;
     }
 
-    @PostMapping("/")
-    public void imageUpload(@RequestParam("image") MultipartFile[] image,@RequestParam("name") String name) throws IOException {
-        System.out.println(name);
-        User ronaldo = new ObjectMapper().readValue(name, User.class);
-        collectionService.uploadImage(image,ronaldo);
+    @PostMapping("/asd")
+    public void imageUpload(@RequestParam("image") MultipartFile[] image,@RequestParam("name") String data) throws IOException {
+        System.out.println(data+"...................");
+        Collection gameDetail = new ObjectMapper().readValue(data, Collection.class);
+        collectionService.uploadImage(image,gameDetail);
+    }
+    @PostMapping("/upload")
+    public void gameUpload(@RequestParam(value = "image",required = false) MultipartFile[] image,@RequestParam("name") String data,@RequestParam(value = "logo",required = false) MultipartFile logo) throws IOException {
+        System.out.println(data);
+        Collection gameDetail = new ObjectMapper().readValue(data, Collection.class);
+        collectionService.uploadGame(image,gameDetail,logo);
     }
 
 }

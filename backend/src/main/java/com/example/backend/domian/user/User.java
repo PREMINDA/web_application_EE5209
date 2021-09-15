@@ -2,6 +2,7 @@ package com.example.backend.domian.user;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 
 @Entity
@@ -167,4 +168,23 @@ public class User implements Serializable {
     }
 
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userId='" + userId + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", joinDate=" + joinDate +
+                ", lastLoginDate=" + lastLoginDate +
+                ", lastLogindateDisplay=" + lastLogindateDisplay +
+                ", role='" + role + '\'' +
+                ", authorities=" + Arrays.toString(authorities) +
+                ", isActive=" + isActive +
+                ", isNotLocked=" + isNotLocked +
+                '}';
+    }
 }
