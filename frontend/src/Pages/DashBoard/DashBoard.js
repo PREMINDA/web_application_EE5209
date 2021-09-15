@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { userList } from "../../redux/action/userDetailAction";
 import UserDetail from "../../Components/UserDetail/UserDetail";
-import Sidebar from "../../Components/SideBar/SideBar";
-import { Link } from "react-router-dom";
 import { NavLink, Route } from "react-router-dom";
 import {
   UsersIcon,
@@ -14,7 +12,7 @@ import {
 
 import NewUser from "../AddNewUser/NewUser";
 import AddGame from "../AddGame/AddGame";
-import Example from "../../Components/UserAddPopUp/UserAddPopUp";
+
 import UserList from "../UserList/UserList";
 
 const DashBoard = ({ match, history }) => {

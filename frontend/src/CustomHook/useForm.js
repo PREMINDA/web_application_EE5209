@@ -22,7 +22,6 @@ const useForm = (validateInfo) => {
 
   const checkValidation = () => {
     setErrors(validateInfo(valuses));
-    console.log("asdasdasd");
   };
 
   return {

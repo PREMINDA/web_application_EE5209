@@ -5,7 +5,6 @@ import MyToggle from "../../Components/Switch/Switch";
 import { addNewUser } from "../../redux/action/newUserAction";
 import useForm from "../../CustomHook/useForm";
 import validateInfo from "../../CustomHook/validateInfo";
-import Dangermsg from "../../Components/DangerMsg/Dangermsg";
 const NewUser = ({ history }) => {
   const [enabled, setEnabled] = useState();
 
@@ -50,10 +49,8 @@ const NewUser = ({ history }) => {
       ...valuses,
       role: enabled ? "ROLE_SUPER_ADMIN" : "ROLE_USER",
     };
-    console.log();
-    delete new1.repassword;
-    console.log(new1);
 
+    delete new1.repassword;
     //dispatch(addNewUser(new1));
   };
 
