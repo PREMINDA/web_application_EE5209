@@ -8,7 +8,8 @@ const InforComponent = () => {
   const arr = [
     "DirectX:DirectX12",
     "OS:Windows 10",
-    "CPU:Ryzan RX570 - 8GB / Geforce GTX 1060 - 6GB",
+    "CPU:Ryzan 4 / Core i5",
+    "GPU:Ryzan RX570 - 8GB / Geforce GTX 1060 - 6GB",
     "RAM:16GB",
     "Storage:50GB HDD",
   ];

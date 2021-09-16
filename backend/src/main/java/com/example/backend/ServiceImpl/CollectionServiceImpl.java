@@ -47,7 +47,7 @@ public class CollectionServiceImpl implements CollectionService {
 
     }
 
-    public void uploadGame(MultipartFile[] imageFile, Collection game,MultipartFile logo) throws IOException{
+    public void gameUpload(MultipartFile[] imageFile, Collection game, MultipartFile logo) throws IOException{
         Collection collection = new Collection();
         collection.setGameId(generateUserId());
         collection.setGameName(game.getGameName());
@@ -61,41 +61,54 @@ public class CollectionServiceImpl implements CollectionService {
         collection.setSystemRequirements(game.getSystemRequirements());
         collection.setImagePaths(makePathList(imageFile, game.getGameName()));
         collection.setCategory(game.getCategory());
-        collection.setLogoPath(getLogoPath(logo,game.getGameName()));
-
+        setLogo(logo,game.getGameName());
+       collection.setReleaseDate(new Date(2021,1,1));
         collectionRepository.save(collection);
 
     };
+
+    public void uploadGame(Collection coll){
+        Collection newGame = new Collection();
+        newGame.setGameId(generateUserId());
+        newGame.setGameName(coll.getGameName());
+        newGame.setAvailability(coll.getAvailability());
+        newGame.setUploadDate(new Date());
+        newGame.setPrice(coll.getPrice());
+        newGame.setCategory(coll.getCategory());
+        newGame.setSystemRequirements(coll.getSystemRequirements());
+        newGame.setDeveloperInformation(coll.getDeveloperInformation());
+        newGame.setStoryLine(coll.getStoryLine());
+        newGame.setDescription(coll.getDescription());
+        newGame.setRating(0);
+        newGame.setStockCount(coll.getStockCount());
+        collectionRepository.save(newGame);
+    }
 
     private String generateUserId() {
         return RandomStringUtils.randomNumeric(10);
     }
 
-    private String[] makePathList (MultipartFile[] imageFile,String gameName) throws IOException {
+    private String makePathList (MultipartFile[] imageFile,String gameName) throws IOException {
 
         if(imageFile.length>0)
         {
-            ArrayList<String> pathList = new ArrayList<>();
+
             String configFilePath = new File(System.getProperty("user.dir")).getParent()+"/frontend";
             String saveLocation = String.format("/src/images/%s",gameName);
             new File(configFilePath+saveLocation).mkdirs();
             int i = 1;
-
             for (MultipartFile mp : imageFile)
             {
                 byte[] bytes = mp.getBytes();
                 Path path = Paths.get(configFilePath+saveLocation+"/"+i+".jpg");
-                pathList.add(saveLocation+"/");
                 Files.write(path,bytes);
                 i++;
             }
-            String[] pathArr = new String[pathList.size()];
-            pathArr = pathList.toArray(pathArr);
-            return pathArr;
+            return saveLocation+"/";
         }
         return null;
     }
-    private String getLogoPath (MultipartFile logo,String gameName) throws IOException {
+    private void setLogo (MultipartFile logo,String gameName) throws IOException {
 
         if(!logo.isEmpty())
         {
@@ -104,9 +117,9 @@ public class CollectionServiceImpl implements CollectionService {
             byte[] bytes = logo.getBytes();
             Path path = Paths.get(configFilePath+saveLocation+"/"+"logo"+".png");
             Files.write(path,bytes);
-            return saveLocation;
+
         }
-        return null;
+
     }
 
 }

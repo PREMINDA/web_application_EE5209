@@ -19,12 +19,13 @@ public class Collection implements Serializable {
                       String[] systemRequirements,
                       String[] developerInformation,
                       String price,
-                      String[] imagePaths,
-                      String logoPath,
+                      String imagePaths,
                       Boolean availability,
                       Integer rating,
                       String[] category,
-                      Date uploadDate) {
+                      Date uploadDate,
+                      Date releaseDate,
+                      Integer stockCount) {
 
         this.gameId = gameId;
         this.gameName = gameName;
@@ -34,11 +35,12 @@ public class Collection implements Serializable {
         this.developerInformation = developerInformation;
         this.price = price;
         this.imagePaths = imagePaths;
-        this.logoPath = logoPath;
         this.availability = availability;
         this.rating = rating;
         this.category = category;
         this.uploadDate = uploadDate;
+        this.releaseDate = releaseDate;
+        this.stockCount = stockCount;
     }
 
     @Id
@@ -53,12 +55,13 @@ public class Collection implements Serializable {
     private String[] systemRequirements;
     private String[] developerInformation;
     private String price;
-    private String[] imagePaths;
-    private String logoPath;
+    private String imagePaths;//
     private Date uploadDate;
+    private Date releaseDate;//
     private Boolean availability;
-    private Integer rating;
+    private Integer rating;//
     private String[] category;
+    private Integer stockCount;
 
     public Long getId() {
         return id;
@@ -124,21 +127,14 @@ public class Collection implements Serializable {
         this.price = price;
     }
 
-    public String[] getImagePaths() {
+    public String getImagePaths() {
         return imagePaths;
     }
 
-    public void setImagePaths(String[] imagePaths) {
+    public void setImagePaths(String imagePaths) {
         this.imagePaths = imagePaths;
     }
 
-    public String getLogoPath() {
-        return logoPath;
-    }
-
-    public void setLogoPath(String logoPath) {
-        this.logoPath = logoPath;
-    }
 
     public Boolean getAvailability() {
         return availability;
@@ -172,22 +168,19 @@ public class Collection implements Serializable {
         this.uploadDate = uploadDate;
     }
 
-    @Override
-    public String toString() {
-        return "Collection{" +
-                "id=" + id +
-                ", gameId='" + gameId + '\'' +
-                ", gameName='" + gameName + '\'' +
-                ", description='" + description + '\'' +
-                ", storyLine='" + storyLine + '\'' +
-                ", systemRequirements=" + Arrays.toString(systemRequirements) +
-                ", developerInformation=" + Arrays.toString(developerInformation) +
-                ", price='" + price + '\'' +
-                ", imagePaths=" + Arrays.toString(imagePaths) +
-                ", logoPath='" + logoPath + '\'' +
-                ", availability=" + availability +
-                ", rating=" + rating +
-                ", category=" + Arrays.toString(category) +
-                '}';
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Integer getStockCount() {
+        return stockCount;
+    }
+
+    public void setStockCount(Integer stockCount) {
+        this.stockCount = stockCount;
     }
 }

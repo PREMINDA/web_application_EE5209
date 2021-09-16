@@ -38,10 +38,6 @@ const NewUser = ({ history }) => {
     repassword,
   } = valuses;
 
-  // useEffect(() => {
-  //   setEnabled(false);
-  // }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     checkValidation();
