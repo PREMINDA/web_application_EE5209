@@ -3,7 +3,7 @@ import {
   ADD_NEW_GAME_FAIL,
   ADD_NEW_GAME_REQUEST,
   ADD_NEW_GAME_SUCCESS,
-  ADD_USER_EMPTY,
+  ADD_NEW_GAME_EMPTY,
 } from "../constant/collectionConstant";
 
 export const addNewGame = (gameDetail) => async (dispatch) => {
@@ -33,5 +33,18 @@ export const addNewGame = (gameDetail) => async (dispatch) => {
           });
         }
       });
+
+    dispatch({
+      type: ADD_NEW_GAME_SUCCESS,
+      payload: data,
+    });
   } catch (e) {}
+};
+
+export const emptyGame = () => async (dispatch) => {
+  setTimeout(function () {
+    dispatch({
+      type: ADD_NEW_GAME_EMPTY,
+    });
+  }, 500);
 };

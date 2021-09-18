@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePickers from "../../Components/DatePicker/DatePicker";
 import FormInput from "../../Components/FormInput/FormInput";
 import MultiSelectDropDown from "../../Components/MultiSelectDropDown/MultiSelectDropDown";
 import { addNewGame } from "../../redux/action/collectionAction";
 import { useDispatch, useSelector } from "react-redux";
 
-const AddGame = () => {
+const AddGame = ({ history }) => {
   const dispatch = useDispatch();
-
+  const addedGameInfor = useSelector((state) => state.newGame);
+  const { newGame } = addedGameInfor;
   const [errors, setErrors] = useState(false);
 
   const [directx, setDirectx] = useState("");
@@ -28,6 +29,13 @@ const AddGame = () => {
 
   const [selected, setSelected] = useState([]);
   const valuearray = [];
+
+  useEffect(() => {
+    if (newGame) {
+      history.push("/dashboard/games");
+    }
+  }, [newGame]);
+
   const appendval = () => {
     selected.forEach((e) => {
       valuearray.push(e.value);
@@ -141,13 +149,13 @@ const AddGame = () => {
               />
             </div>
             <div className="w-full">
-              <h1 className="text-xl text-white font-body font-medium mt-3">
+              <h1 className="text-xl text-white font-body font-medium  mt-3">
                 Story Line
               </h1>
               <textarea
                 value={storyline}
                 onChange={(e) => setStoryline(e.target.value)}
-                className="resize-none w-full h-36 border rounded-md"
+                className="resize-none w-full h-36 border rounded-md font-body font-medium"
               />
             </div>
           </div>
