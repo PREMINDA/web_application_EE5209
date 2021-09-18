@@ -4,7 +4,7 @@ import { MultiSelect } from "react-multi-select-component";
 const options = [
   { label: "RPG", value: "RPG" },
   { label: "WAR", value: "WAR" },
-  { label: "Action-adventure", value: "Action-adventure" },
+  { label: "Action", value: "Action" },
   { label: "Adventure", value: "Adventure" },
   { label: "Shooters ", value: "Shooters " },
   { label: "Puzzlers", value: "Puzzlers" },

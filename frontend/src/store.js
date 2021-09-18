@@ -7,12 +7,13 @@ import {
   userRegisterReducer,
 } from "./redux/reducer/userReducer";
 import { newUserReducer } from "./redux/reducer/newUserReducer";
-
+import { newGameReducer } from "./redux/reducer/newCollectionReducer";
 const reducer = combineReducers({
   userDetail: userDetailReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   newUser: newUserReducer,
+  newGame: newGameReducer,
 });
 
 const userInfoFormStorage = localStorage.getItem("userInfo")

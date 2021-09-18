@@ -7,7 +7,7 @@ import {
 export const userDetailReducer = (state = { users: [] }, action) => {
   switch (action.type) {
     case USER_LIST_GET_REQUEST:
-      return { loading: true, users: [] };
+      return { loading: true };
     case USER_LIST_GET_SUCCESS:
       return { loading: false, users: action.payload };
     case USER_LIST_GET_FAIL:

@@ -11,6 +11,6 @@ public interface CollectionService {
 
     void uploadImage(MultipartFile[] imageFile, Collection game) throws IOException;
     void gameUpload(MultipartFile[] imageFile, Collection game, MultipartFile logo) throws IOException;
-    void uploadGame(Collection coll);
+    Collection uploadGame(Collection coll);
 
 }

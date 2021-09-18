@@ -2,9 +2,12 @@ package com.example.backend.controller;
 
 
 import com.example.backend.domian.collection.Collection;
+import com.example.backend.domian.user.User;
 import com.example.backend.service.collectionservice.CollectionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,9 +37,10 @@ public class CollectionController {
         collectionService.gameUpload(image,gameDetail,logo);
     }
 
-    @PostMapping("/")
-    public void uploadGame(@RequestBody Collection coll) throws IOException {
-        collectionService.uploadGame(coll);
+    @PostMapping("/add")
+    public ResponseEntity<Collection> uploadGame(@RequestBody Collection coll) throws IOException {
+         Collection newGame = collectionService.uploadGame(coll);
+        return new ResponseEntity<Collection>(newGame, HttpStatus.OK);
     }
 
 }

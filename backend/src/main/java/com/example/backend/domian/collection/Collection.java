@@ -49,7 +49,12 @@ public class Collection implements Serializable {
     private Long id;
     private String gameId;
     private String gameName;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String description;
+
+    @Lob
     @Column(columnDefinition = "TEXT")
     private String storyLine;
     private String[] systemRequirements;

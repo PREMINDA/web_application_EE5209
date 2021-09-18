@@ -47,7 +47,7 @@ const NewUser = ({ history }) => {
     };
 
     delete new1.repassword;
-    //dispatch(addNewUser(new1));
+    dispatch(addNewUser(new1));
   };
 
   return (

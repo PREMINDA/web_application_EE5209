@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import DatePickers from "../../Components/DatePicker/DatePicker";
 import FormInput from "../../Components/FormInput/FormInput";
 import MultiSelectDropDown from "../../Components/MultiSelectDropDown/MultiSelectDropDown";
+import { addNewGame } from "../../redux/action/collectionAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const AddGame = () => {
+  const dispatch = useDispatch();
+
   const [errors, setErrors] = useState(false);
 
   const [directx, setDirectx] = useState("");
@@ -17,7 +21,7 @@ const AddGame = () => {
   const [stockCount, setStockCount] = useState("");
   const [developer, setDeveloper] = useState("");
   const [publisher, setPublisher] = useState("");
-  const [relesdate, setReleasDate] = useState(new Date());
+  const [releasedate, setReleasDate] = useState(new Date());
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [storyline, setStoryline] = useState("");
@@ -41,7 +45,7 @@ const AddGame = () => {
     const devAndPubArr = [
       `Developer:${developer}`,
       `Publisher:${publisher}`,
-      `Releas Date:${relesdate}`,
+      `Releas Date:${releasedate}`,
       `Price:${price}`,
     ];
 
@@ -54,8 +58,10 @@ const AddGame = () => {
       storyLine: storyline,
       description: description,
       stockCount: stockCount,
+      releaseDate: releasedate,
     };
 
+    dispatch(addNewGame(sendResult));
     console.log(sendResult);
   };
 
@@ -248,7 +254,7 @@ const AddGame = () => {
             Release Date
           </h1>
           <div className="">
-            <DatePickers startDate={relesdate} setStartDate={setReleasDate} />
+            <DatePickers startDate={releasedate} setStartDate={setReleasDate} />
           </div>
           <div className="mt-4 flex justify-center ">
             <button

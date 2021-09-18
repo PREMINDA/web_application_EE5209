@@ -67,7 +67,7 @@ public class CollectionServiceImpl implements CollectionService {
 
     };
 
-    public void uploadGame(Collection coll){
+    public Collection uploadGame(Collection coll){
         Collection newGame = new Collection();
         newGame.setGameId(generateUserId());
         newGame.setGameName(coll.getGameName());
@@ -75,13 +75,16 @@ public class CollectionServiceImpl implements CollectionService {
         newGame.setUploadDate(new Date());
         newGame.setPrice(coll.getPrice());
         newGame.setCategory(coll.getCategory());
+        newGame.setAvailability(true);
         newGame.setSystemRequirements(coll.getSystemRequirements());
+        newGame.setReleaseDate(coll.getReleaseDate());
         newGame.setDeveloperInformation(coll.getDeveloperInformation());
         newGame.setStoryLine(coll.getStoryLine());
         newGame.setDescription(coll.getDescription());
         newGame.setRating(0);
         newGame.setStockCount(coll.getStockCount());
         collectionRepository.save(newGame);
+        return newGame;
     }
 
     private String generateUserId() {
