@@ -188,4 +188,27 @@ public class Game implements Serializable {
     public void setStockCount(Integer stockCount) {
         this.stockCount = stockCount;
     }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", gameId='" + gameId + '\'' +
+                ", gameName='" + gameName + '\'' +
+                ", description='" + description + '\'' +
+                ", storyLine='" + storyLine + '\'' +
+                ", systemRequirements=" + Arrays.toString(systemRequirements) +
+                ", developerInformation=" + Arrays.toString(developerInformation) +
+                ", price='" + price + '\'' +
+                ", imagePaths='" + imagePaths + '\'' +
+                ", uploadDate=" + uploadDate +
+                ", releaseDate=" + releaseDate +
+                ", availability=" + availability +
+                ", rating=" + rating +
+                ", category=" + Arrays.toString(category) +
+                ", stockCount=" + stockCount +
+                '}';
+    }
 }
+
+

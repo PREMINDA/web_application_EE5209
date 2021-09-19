@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import im from "../../Images/Call Of Duty Vanguard/1.jpg";
 
 import Seperator from "../../Components/Seperator/Seperator";
 
@@ -14,7 +15,11 @@ const AdminGameCard = ({ id, mainImage, game, onDelete }) => {
       <div className="w-80 bg-lightBlue rounded-2xl">
         <img
           style={{ height: "180px", objectFit: "cover" }}
-          src={mainImage}
+          src={
+            game.imagePaths
+              ? require(`../../Images/${game.gameName}/1.jpg`).default
+              : require(`../../Images/1.png`).default
+          }
           alt="Image"
           className="w-full p-2 rounded-2xl"
         />

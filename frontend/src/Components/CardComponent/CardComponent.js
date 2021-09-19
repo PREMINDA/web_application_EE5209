@@ -7,14 +7,14 @@ const CardComponent = ({ title }) => {
   const arr = ["WAR", "ACTION", "ADVENTURE", "RPG"];
   return (
     <div
-      style={{ height: "360px", background: "#1C1E4B" }}
-      className="rounded-2xl overflow-hidden w-64"
+      style={{ background: "#1C1E4B" }}
+      className="rounded-2xl overflow-hidden w-72"
     >
       <img
         style={{ height: "180px", objectFit: "cover" }}
         src={imagelogo2}
         alt=""
-        className="w-full p-3 rounded-3xl"
+        className="w-full p-2 rounded-3xl"
       />
       <div className="px-4 py-2 pt-0">
         <div className="font-light font-body text-base text-white mb-1">

@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -98,27 +99,36 @@ public class GameServiceImpl implements GameService {
         gamesRepository.deleteById(id);
     }
 
+    public void uploadImageGallery(Long id,MultipartFile[] images) throws IOException {
+
+           Game game = gamesRepository.findById(id).get();
+           String path = setImages(images,game.getGameName());
+           game.setImagePaths(path);
+           gamesRepository.save(game);
+           System.out.println(game);
+    }
+
     private String generateUserId() {
         return RandomStringUtils.randomNumeric(10);
     }
 
-    private String setImages(MultipartFile[] imageFile, String gameName) throws IOException {
+    private String setImages(MultipartFile[] images, String gameName) throws IOException {
 
-        if(imageFile.length>0)
+        if(images.length>0)
         {
 
             String configFilePath = new File(System.getProperty("user.dir")).getParent()+"/frontend";
             String saveLocation = String.format("/src/images/%s",gameName);
             new File(configFilePath+saveLocation).mkdirs();
             int i = 1;
-            for (MultipartFile mp : imageFile)
+            for (MultipartFile mp : images)
             {
                 byte[] bytes = mp.getBytes();
                 Path path = Paths.get(configFilePath+saveLocation+"/"+i+".jpg");
                 Files.write(path,bytes);
                 i++;
             }
-            return saveLocation+"/";
+            return saveLocation;
         }
         return null;
     }

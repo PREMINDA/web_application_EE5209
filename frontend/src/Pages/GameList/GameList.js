@@ -39,6 +39,8 @@ const GameList = () => {
     window.location.reload(true);
   };
 
+  const addImage = (id) => {};
+
   return (
     <>
       {newGame && (

@@ -45,6 +45,8 @@ export const deleteGame = (id) => async (dispatch) => {
   await axios.delete(`/collection/delete/${id}`);
 };
 
+export const addGaller = (id) => async (dispatch) => {};
+
 export const emptyGame = () => async (dispatch) => {
   setTimeout(function () {
     dispatch({

@@ -45,6 +45,13 @@ public class GameController {
         return new ResponseEntity<Game>(newGame, HttpStatus.OK);
     }
 
+    @PostMapping("/addimage/{id}")
+    public ResponseEntity<HttpResponse> uploadImage(@PathVariable("id") long id,@RequestParam(value = "images",required = false) MultipartFile[] images) throws IOException {
+        gameService.uploadImageGallery(id,images);
+        return response(HttpStatus.NO_CONTENT,"User Deleted successfully");
+    }
+
+
     @GetMapping("/list")
     public ResponseEntity<List<Game>> getAllUser(){
         List<Game> gameList = gameService.getGameList();
