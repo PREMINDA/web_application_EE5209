@@ -1,14 +1,14 @@
 import procolor from "../../Config/color";
 
-const Seperator = () => {
+const Seperator = ({ height = "3px", mt = 6 }) => {
   return (
     <div
       style={{
-        height: "3px",
-        width: "85%",
+        height: `${height}`,
+        width: "100%",
         background: procolor.specialTextColor,
       }}
-      className="mx-auto mt-6"
+      className={`mx-auto mt-${mt}`}
     />
   );
 };

@@ -1,9 +1,8 @@
 package com.example.backend.ServiceImpl;
 
-import com.example.backend.domian.collection.Collection;
-import com.example.backend.domian.user.User;
-import com.example.backend.repository.CollectionRepository;
-import com.example.backend.service.collectionservice.CollectionService;
+import com.example.backend.domian.collection.Game;
+import com.example.backend.repository.GameRepository;
+import com.example.backend.service.gameservice.GameService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,19 +16,20 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
-public class CollectionServiceImpl implements CollectionService {
+public class GameServiceImpl implements GameService {
 
-    private CollectionRepository collectionRepository;
+    private GameRepository gamesRepository;
 
     @Autowired
-    public CollectionServiceImpl(CollectionRepository collectionRepository) {
-        this.collectionRepository = collectionRepository;
+    public GameServiceImpl(GameRepository collectionRepository) {
+        this.gamesRepository = collectionRepository;
     }
 
-    public void uploadImage(MultipartFile[] imageFile, Collection game) throws IOException {
+    public void uploadImage(MultipartFile[] imageFile, Game game) throws IOException {
         String configFilePath = new File(System.getProperty("user.dir")).getParent()+"/frontend";
         String saveLocation = String.format("/src/images/%s",game.getGameName());
         new File(configFilePath+saveLocation).mkdirs();
@@ -47,8 +47,8 @@ public class CollectionServiceImpl implements CollectionService {
 
     }
 
-    public void gameUpload(MultipartFile[] imageFile, Collection game, MultipartFile logo) throws IOException{
-        Collection collection = new Collection();
+    public void gameUpload(MultipartFile[] imageFile, Game game, MultipartFile logo) throws IOException{
+        Game collection = new Game();
         collection.setGameId(generateUserId());
         collection.setGameName(game.getGameName());
         collection.setPrice(game.getPrice());
@@ -59,16 +59,16 @@ public class CollectionServiceImpl implements CollectionService {
         collection.setUploadDate(new Date());
         collection.setDeveloperInformation(game.getDeveloperInformation());
         collection.setSystemRequirements(game.getSystemRequirements());
-        collection.setImagePaths(makePathList(imageFile, game.getGameName()));
+        collection.setImagePaths(setImages(imageFile, game.getGameName()));
         collection.setCategory(game.getCategory());
         setLogo(logo,game.getGameName());
        collection.setReleaseDate(new Date(2021,1,1));
-        collectionRepository.save(collection);
+        gamesRepository.save(collection);
 
     };
 
-    public Collection uploadGame(Collection coll){
-        Collection newGame = new Collection();
+    public Game uploadGame(Game coll){
+        Game newGame = new Game();
         newGame.setGameId(generateUserId());
         newGame.setGameName(coll.getGameName());
         newGame.setAvailability(coll.getAvailability());
@@ -83,15 +83,26 @@ public class CollectionServiceImpl implements CollectionService {
         newGame.setDescription(coll.getDescription());
         newGame.setRating(0);
         newGame.setStockCount(coll.getStockCount());
-        collectionRepository.save(newGame);
+        gamesRepository.save(newGame);
         return newGame;
+    }
+
+    public List<Game> getGameList()
+    {
+        List<Game> games = gamesRepository.findAll();
+        return games;
+    }
+
+    public void deleteGame(Long id)
+    {
+        gamesRepository.deleteById(id);
     }
 
     private String generateUserId() {
         return RandomStringUtils.randomNumeric(10);
     }
 
-    private String makePathList (MultipartFile[] imageFile,String gameName) throws IOException {
+    private String setImages(MultipartFile[] imageFile, String gameName) throws IOException {
 
         if(imageFile.length>0)
         {
@@ -124,5 +135,8 @@ public class CollectionServiceImpl implements CollectionService {
         }
 
     }
+
+
+
 
 }

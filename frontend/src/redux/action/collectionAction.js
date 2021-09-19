@@ -41,6 +41,10 @@ export const addNewGame = (gameDetail) => async (dispatch) => {
   } catch (e) {}
 };
 
+export const deleteGame = (id) => async (dispatch) => {
+  await axios.delete(`/collection/delete/${id}`);
+};
+
 export const emptyGame = () => async (dispatch) => {
   setTimeout(function () {
     dispatch({

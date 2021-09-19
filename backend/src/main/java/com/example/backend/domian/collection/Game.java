@@ -6,12 +6,12 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 @Entity
-public class Collection implements Serializable {
+public class Game implements Serializable {
 
-    public Collection(){
+    public Game(){
     }
 
-    public Collection(
+    public Game(
                       String gameId,
                       String gameName,
                       String description,
