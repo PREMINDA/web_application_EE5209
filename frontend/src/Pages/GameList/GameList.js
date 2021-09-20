@@ -12,9 +12,11 @@ const GameList = () => {
   let [isOpen, setIsOpen] = useState(false);
 
   const newAddUser = useSelector((state) => state.newGame);
-  const collectionList = useSelector((state) => state.collectionList);
   const { newGame } = newAddUser;
+
+  const collectionList = useSelector((state) => state.collectionList);
   const { games } = collectionList;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
