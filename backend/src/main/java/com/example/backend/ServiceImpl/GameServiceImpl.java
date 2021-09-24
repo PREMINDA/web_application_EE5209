@@ -99,7 +99,8 @@ public class GameServiceImpl implements GameService {
         gamesRepository.deleteById(id);
     }
 
-    public void uploadImageGallery(Long id,MultipartFile[] images) throws IOException {
+    public void uploadImageGallery(Long id,MultipartFile[] images) throws IOException
+    {
 
            Game game = gamesRepository.findById(id).get();
            String path = setImages(images,game.getGameName());
@@ -108,11 +109,17 @@ public class GameServiceImpl implements GameService {
            System.out.println(game);
     }
 
+    public Game getSelectGame (Long id)
+    {
+        return gamesRepository.findById(id).get();
+    }
+
     private String generateUserId() {
         return RandomStringUtils.randomNumeric(10);
     }
 
-    private String setImages(MultipartFile[] images, String gameName) throws IOException {
+    private String setImages(MultipartFile[] images, String gameName) throws IOException
+    {
 
         if(images.length>0)
         {
@@ -132,7 +139,8 @@ public class GameServiceImpl implements GameService {
         }
         return null;
     }
-    private void setLogo (MultipartFile logo,String gameName) throws IOException {
+    private void setLogo (MultipartFile logo,String gameName) throws IOException
+    {
 
         if(!logo.isEmpty())
         {

@@ -18,7 +18,10 @@ const CollectionPage = () => {
   return (
     <div className="container-xl" style={{ background: procolor.maincolor }}>
       <div className="mt-24  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
-        {games && games.map((game) => <CardComponent game={game} />)}
+        {games &&
+          games.map((game) => (
+            <CardComponent key={game.gameId} id={game.id} game={game} />
+          ))}
       </div>
     </div>
   );

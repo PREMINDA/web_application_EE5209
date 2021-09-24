@@ -107,17 +107,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User updateUser(String currentName, String firstName, String lastName, String username, String email, String role, boolean isNonLocked, boolean isActive) throws UserNotFoundException, EmailExistException, UserNameExistException, IOException {
-        User user = validateNewUsernameAndEmail(currentName,username,email);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setUsername(username);
-        user.setEmail(email);
-        user.setActive(isActive);
-        user.setNotLocked(isNonLocked);
-        user.setRole(getRoleEnumName(role).name());
-        user.setAuthorities(getRoleEnumName(role).getAuthorities());
-        userRepository.save(user);
+    public User editUser(User user) throws UserNotFoundException, EmailExistException, UserNameExistException, IOException {
+        User editUser = userRepository.findById(user.getId()).get();
+        System.out.println(user);
+        editUser.setNotLocked(user.isNotLocked());
+        editUser.setRole(getRoleEnumName(user.getRole()).name());
+        editUser.setAuthorities(getRoleEnumName(user.getRole()).getAuthorities());
+        userRepository.save(editUser);
         return user;
     }
 
@@ -127,6 +123,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepository.findAll();
 
     }
+
+
 
     @Override
     public User findUserByUsername(String username) {

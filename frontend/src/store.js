@@ -1,12 +1,18 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { userDetailReducer } from "./redux/reducer/userDetailReducer";
+import {
+  userDetailReducer,
+  userDeleteReducer,
+} from "./redux/reducer/userDetailReducer";
 import {
   userLoginReducer,
   userRegisterReducer,
 } from "./redux/reducer/userReducer";
-import { collectionListReducer } from "./redux/reducer/collectionListReducer";
+import {
+  collectionListReducer,
+  collectionGameReducer,
+} from "./redux/reducer/collectionListReducer";
 import { newUserReducer } from "./redux/reducer/newUserReducer";
 import { newGameReducer } from "./redux/reducer/newCollectionReducer";
 const reducer = combineReducers({
@@ -16,6 +22,8 @@ const reducer = combineReducers({
   newUser: newUserReducer,
   newGame: newGameReducer,
   collectionList: collectionListReducer,
+  game: collectionGameReducer,
+  UserDelete: userDeleteReducer,
 });
 
 const userInfoFormStorage = localStorage.getItem("userInfo")

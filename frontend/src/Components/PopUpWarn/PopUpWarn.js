@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-const Popup = ({ ditail, isOpen, closeModal, Fragment, tag }) => {
+const PopUpWarn = ({ isOpen, closeModal, Fragment, message }) => {
   return (
     <div>
       <Transition appear show={isOpen} as={Fragment}>
@@ -39,29 +39,13 @@ const Popup = ({ ditail, isOpen, closeModal, Fragment, tag }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-red-500 shadow-xl rounded-2xl">
                 <Dialog.Title
                   as="h3"
-                  className="text-2xl mb-4 font-medium leading-6 text-gray-900"
+                  className="text-2xl mb-4 font-medium leading-6 text-white"
                 >
-                  Successfully Added New User
+                  {message}
                 </Dialog.Title>
-                <div className="mt-2">
-                  {ditail ? (
-                    <>
-                      <h3 className="text-xl">
-                        {tag[0]} : {ditail[0]}
-                      </h3>
-                      <h3 className="text-xl">
-                        {tag[1]}: {ditail[1]}
-                      </h3>
-                      <h3 className="text-xl">
-                        {tag[2]} : {ditail[2]}
-                      </h3>
-                    </>
-                  ) : null}
-                </div>
-
                 <div className="mt-4 flex">
                   <button
                     type="button"
@@ -80,4 +64,4 @@ const Popup = ({ ditail, isOpen, closeModal, Fragment, tag }) => {
   );
 };
 
-export default Popup;
+export default PopUpWarn;

@@ -47,7 +47,7 @@ const GameList = () => {
     <>
       {newGame && (
         <Popup
-          newGame={[
+          ditail={[
             `${newGame.gameId}`,
             `${newGame.gameName}`,
             `${newGame.price}`,

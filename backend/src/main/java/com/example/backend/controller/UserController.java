@@ -40,7 +40,7 @@ public class UserController extends ExceptionHandling {
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody User user) throws EmailExistException, UserNotFoundException, UserNameExistException {
-        authenticate(user.getUsername(),user.getPassword());
+        authenticate(user.getUsername().toLowerCase(),user.getPassword());
         User loginUser = userService.findUserByUsername(user.getUsername());
         UserPrinciple userPrinciple = new UserPrinciple(loginUser);
         HttpHeaders jwtHeader = getJwtHeader(userPrinciple);
@@ -61,18 +61,9 @@ public class UserController extends ExceptionHandling {
         return new ResponseEntity<>(newUser,HttpStatus.OK);
     }
 
-    @PostMapping("/update")
-    public ResponseEntity<User> update(    @RequestParam("currentName") String currentName,
-                                           @RequestParam("firstName") String firstName,
-                                           @RequestParam("lastName") String lastName,
-                                           @RequestParam("userName") String userName,
-                                           @RequestParam("email") String email,
-                                           @RequestParam("role") String role,
-                                           @RequestParam("isActive") String isActive,
-                                           @RequestParam("isNonLocked") String isNonLocked
-
-    ) throws UserNotFoundException, EmailExistException, UserNameExistException, IOException {
-        User updateUser = userService.updateUser(currentName,firstName,lastName,userName,email,role,Boolean.parseBoolean(isNonLocked),Boolean.parseBoolean(isActive));
+    @PostMapping("/edit")
+    public ResponseEntity<User> update(   @RequestBody User user) throws UserNotFoundException, EmailExistException, UserNameExistException, IOException {
+        User updateUser = userService.editUser(user);
         return new ResponseEntity<>(updateUser,HttpStatus.OK);
     }
 

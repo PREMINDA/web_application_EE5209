@@ -53,9 +53,16 @@ public class GameController {
 
 
     @GetMapping("/list")
-    public ResponseEntity<List<Game>> getAllUser(){
+    public ResponseEntity<List<Game>> getAllGames(){
         List<Game> gameList = gameService.getGameList();
         return new ResponseEntity<>(gameList,HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Game> getGame(@PathVariable("id") long id){
+        Game game = gameService.getSelectGame(id);
+        System.out.println(game);
+        return new ResponseEntity<>(game,HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

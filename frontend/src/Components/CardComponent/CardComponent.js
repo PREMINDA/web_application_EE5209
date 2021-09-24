@@ -1,26 +1,29 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import imagelogo from "../../Images/40-407432_ubisoft-logo-ubisoft-logo-png-white.png";
 import imagelogo2 from "../../Images/ACV_Gold_Edition_Triple.jpg";
 import TextRound from "../TextRound/TextRoundComponent";
 import Rating from "../RatingComponent/Rating.js";
 import Seperator from "../Seperator/Seperator";
-const CardComponent = ({ game }) => {
+const CardComponent = ({ id, game }) => {
   const arr = ["WAR", "ACTION", "ADVENTURE", "RPG"];
   return (
     <div
       style={{ background: "#1C1E4B" }}
       className="rounded-2xl overflow-hidden w-72"
     >
-      <img
-        style={{ height: "180px", objectFit: "cover" }}
-        src={
-          game.imagePaths
-            ? require(`../../Images/${game.gameName}/1.jpg`).default
-            : require(`../../Images/1.png`).default
-        }
-        alt=""
-        className="w-full p-2 rounded-3xl"
-      />
+      <Link to={`/collection/${id}`}>
+        <img
+          style={{ height: "180px", objectFit: "cover" }}
+          src={
+            game.imagePaths
+              ? require(`../../Images/${game.gameName}/1.jpg`).default
+              : require(`../../Images/1.png`).default
+          }
+          alt=""
+          className="w-full p-2 rounded-3xl"
+        />
+      </Link>
       <div className="px-4 py-2 pt-0">
         <h1 className="font-light text-base  font-body inline-block align-middle  text-white mb-1">
           {game.gameName}

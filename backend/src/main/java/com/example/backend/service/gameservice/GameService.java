@@ -15,5 +15,6 @@ public interface GameService {
     List<Game> getGameList();
     void deleteGame(Long id);
     void uploadImageGallery(Long id,MultipartFile[] images) throws IOException;
+    Game getSelectGame (Long id);
 
 }

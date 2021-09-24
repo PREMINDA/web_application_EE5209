@@ -32,7 +32,7 @@ public class UserPrinciple implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.user.getUsername();
+        return this.user.getUsername().toLowerCase();
     }
 
     @Override

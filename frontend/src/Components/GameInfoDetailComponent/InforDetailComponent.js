@@ -10,21 +10,11 @@ const InforDetailcomponent = ({ title, subTitle, color }) => {
       >
         {title}
       </h1>
-      <h1
-        style={
-          title === "Price"
-            ? {
-                color: procolor.pricingColo,
-                fontSize: "24px",
-                marginTop: "0",
-                fontWeight: "600",
-              }
-            : { color: "white", fontSize: "16px" }
-        }
-        className="font-body mt-1"
-      >
-        {subTitle}
-      </h1>
+      {title === "Price" ? (
+        <h1 className="text-pricingcolor text-lg">{subTitle}.00$</h1>
+      ) : (
+        <h1 className="text-white text-base">{subTitle}</h1>
+      )}
     </div>
   );
 };
