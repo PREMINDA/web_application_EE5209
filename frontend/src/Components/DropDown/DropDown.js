@@ -50,7 +50,7 @@ const DropDownComponent = ({ userinfo, onClick }) => {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  href="#"
+                  href="/"
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-white",
                     "block px-4 py-2 text-sm no-underline"

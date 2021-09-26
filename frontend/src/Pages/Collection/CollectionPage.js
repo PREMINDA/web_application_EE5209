@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardComponent from "../../Components/CardComponent/CardComponent";
-import InforComponent from "../../Components/GameInfoComponent/InfoComponent";
 import procolor from "../../Config/color";
 import { getCollectionList } from "../../redux/action/collectionListAction";
 
@@ -13,7 +12,7 @@ const CollectionPage = () => {
 
   useEffect(() => {
     dispatch(getCollectionList());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container-xl" style={{ background: procolor.maincolor }}>
@@ -28,7 +27,3 @@ const CollectionPage = () => {
 };
 
 export default CollectionPage;
-
-<div className="w-64 mr-12">
-  <InforComponent />
-</div>;

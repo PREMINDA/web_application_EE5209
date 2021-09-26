@@ -34,7 +34,7 @@ const AddGame = ({ history }) => {
     if (newGame) {
       history.push("/dashboard/games");
     }
-  }, [newGame]);
+  }, [newGame, history]);
 
   const appendval = () => {
     selected.forEach((e) => {
@@ -70,7 +70,6 @@ const AddGame = ({ history }) => {
     };
 
     dispatch(addNewGame(sendResult));
-    console.log(sendResult);
   };
 
   const asd = { preminda: "asdasd" };

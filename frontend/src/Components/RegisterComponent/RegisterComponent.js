@@ -49,7 +49,7 @@ const Register = ({ history }) => {
     >
       <div className="h-full w-full ">
         <span className="my-8 flex justify-center text-2xl text-white mt-4 font-medium">
-          SIGN IN
+          SIGN UP
         </span>
         <form className="mb-8" onSubmit={submitHandler}>
           <TextInputComponent
@@ -112,9 +112,20 @@ const Register = ({ history }) => {
             className="my-2"
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <SignInButton title={"Sign in"} type="submit" />
+            <SignInButton title={"Sign up"} type="submit" />
           </div>
         </form>
+        <div className="flex justify-center">
+          <h4 className="text-white text-center text-lg mr-4">
+            Have an Account Already ?
+          </h4>
+          <a
+            href="login"
+            className="text-pricingcolor text-center text-lg mr-4"
+          >
+            Sign In
+          </a>
+        </div>
       </div>
     </div>
   );

@@ -61,7 +61,6 @@ public class GameController {
     @GetMapping("/{id}")
     public ResponseEntity<Game> getGame(@PathVariable("id") long id){
         Game game = gameService.getSelectGame(id);
-        System.out.println(game);
         return new ResponseEntity<>(game,HttpStatus.OK);
     }
 

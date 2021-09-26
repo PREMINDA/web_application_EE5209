@@ -1,4 +1,3 @@
-import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyAddUser } from "../../redux/action/newUserAction";
@@ -10,6 +9,7 @@ import PopUpWarn from "../../Components/PopUpWarn/PopUpWarn";
 import EditProfilePopUp from "../../Components/EditProfilePopUp/EditProfilePopUp";
 import { userEdit } from "../../redux/action/userDetailAction";
 const UserList = () => {
+  //User register complete
   let [isOpen, setIsOpen] = useState(false);
   //Close Open Edit PopUp
   const [editOpen, setEditOpen] = useState(false);
@@ -33,28 +33,36 @@ const UserList = () => {
   const newAddUser = useSelector((state) => state.newUser);
   const { addnewUser } = newAddUser;
 
+  //editedUser success Msg
+  const editUserMsg = useSelector((state) => state.userEdit);
+  const { success } = editUserMsg;
+
   useEffect(() => {
     if (addnewUser) {
       setIsOpen(true);
     }
     dispatch(userList());
     setLogUser(JSON.parse(localStorage.getItem("userInfo")));
-  }, []);
+  }, [success, addnewUser, dispatch]);
 
+  //Close new added user msg
   function closeModal() {
     setIsOpen(false);
     dispatch(emptyAddUser());
   }
 
+  //close Warn Msg
   const closeWarn = () => {
     setCantDelete(false);
     setCantEdit(false);
   };
 
+  //Close Edit Popup
   const closeEdit = () => {
     setEditOpen(false);
   };
 
+  //Open Edit Popup aand do changes
   const openEdit = (user) => {
     if (user.id === logUser.id) {
       setCantEdit(true);
@@ -70,6 +78,7 @@ const UserList = () => {
     }
   };
 
+  //delete selected user from db
   const handleDelete = (id) => {
     if (id === logUser.id) {
       setCantDelete(true);
@@ -79,8 +88,8 @@ const UserList = () => {
     }
   };
 
+  //sebmit edited user
   const SubmitChange = () => {
-    console.log(userId);
     const editedUser = {
       id: userId,
       notLocked: isLocked,
@@ -88,10 +97,8 @@ const UserList = () => {
     };
     dispatch(userEdit(editedUser));
     setEditOpen(false);
-    window.location.reload(true);
+    //window.location.reload(true);
   };
-
-  console.log(logUser.id);
 
   return (
     <div>
@@ -118,7 +125,7 @@ const UserList = () => {
         isOpen={cantEdit}
         Fragment={Fragment}
         closeModal={closeWarn}
-        message={"You Cant,t Change State of Your Self"}
+        message={"You Cant,t Change State by Your Self"}
       />
       <EditProfilePopUp
         SubmitChange={SubmitChange}
@@ -130,7 +137,7 @@ const UserList = () => {
         Fragment={Fragment}
         closeModal={closeEdit}
       />
-      <div className="grid grid-cols-5 gap-4 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4 mt-8">
         {users ? (
           users.map((user) => (
             <UserCard

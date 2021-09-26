@@ -14,7 +14,6 @@ const options = [
 ];
 
 const MultiSelectDropDown = ({ selected, setSelected }) => {
-  console.log(selected);
   return (
     <div>
       <MultiSelect

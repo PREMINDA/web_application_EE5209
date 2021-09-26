@@ -2,12 +2,9 @@ import React from "react";
 import AvatarComponent from "../../Components/Avatar/AvatarComponent";
 import Seperator from "../../Components/Seperator/Seperator";
 
-import { useDispatch } from "react-redux";
 import { TrashIcon, PencilAltIcon } from "@heroicons/react/outline";
 
 const UserCard = ({ user, handleDelete, logId, openEdit }) => {
-  const dispatch = useDispatch();
-
   return (
     <div>
       <div className="bg-lightBlue w-72 pt-2 rounded-2xl ">

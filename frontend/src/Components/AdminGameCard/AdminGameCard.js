@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import im from "../../Images/Call Of Duty Vanguard/1.jpg";
+import React from "react";
 
 import Seperator from "../../Components/Seperator/Seperator";
 
@@ -9,7 +8,7 @@ import {
   PlusCircleIcon,
 } from "@heroicons/react/outline";
 
-const AdminGameCard = ({ id, mainImage, game, onDelete }) => {
+const AdminGameCard = ({ id, game, onDelete }) => {
   return (
     <>
       <div className="w-80 bg-lightBlue rounded-2xl">
@@ -20,7 +19,7 @@ const AdminGameCard = ({ id, mainImage, game, onDelete }) => {
               ? require(`../../Images/${game.gameName}/1.jpg`).default
               : require(`../../Images/1.png`).default
           }
-          alt="Image"
+          alt={`${game.gameName}`}
           className="w-full p-2 rounded-2xl"
         />
         <div className="w-full px-2 text-center">

@@ -7,50 +7,49 @@ import {
 } from "../constant/newUserConstant";
 
 export const addNewUser = (newUserData) => async (dispatch) => {
-  try {
-    dispatch({
-      type: ADD_USER_REQUEST,
-    });
+  dispatch({
+    type: ADD_USER_REQUEST,
+  });
 
-    const JWTToken = localStorage.getItem("jwttoken");
+  const JWTToken = localStorage.getItem("jwttoken");
 
-    console.log(JWTToken);
+  console.log(JWTToken);
 
-    const { data } = await axios
-      .post(
-        "/user/add",
-        { ...newUserData },
-        {
-          headers: {
-            Authorization: `Bearer ${JWTToken}`,
-          },
-        }
-      )
-      .catch(function (error) {
-        if (error.response) {
-          dispatch({
-            type: ADD_USER_FAIL,
-            payload: error.response.data,
-          });
-        } else if (error.request) {
-          console.log(error.request);
-          dispatch({
-            type: ADD_USER_FAIL,
-            payload: error.request.data,
-          });
-        } else {
-          dispatch({
-            type: ADD_USER_FAIL,
-            payload: error.request.data,
-          });
-        }
+  await axios
+    .post(
+      "/user/add",
+      { ...newUserData },
+      {
+        headers: {
+          Authorization: `Bearer ${JWTToken}`,
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: ADD_USER_SUCCESS,
+        payload: res.data,
       });
-
-    dispatch({
-      type: ADD_USER_SUCCESS,
-      payload: data,
+    })
+    .catch(function (error) {
+      if (error.response) {
+        dispatch({
+          type: ADD_USER_FAIL,
+          payload: error.response.data,
+        });
+      } else if (error.request) {
+        console.log(error.request);
+        dispatch({
+          type: ADD_USER_FAIL,
+          payload: error.request.data,
+        });
+      } else {
+        dispatch({
+          type: ADD_USER_FAIL,
+          payload: error.request.data,
+        });
+      }
     });
-  } catch (e) {}
 };
 
 export const emptyAddUser = () => async (dispatch) => {

@@ -14,29 +14,33 @@ export const getCollectionList = () => async (dispatch) => {
     type: COLLECTION_LIST_GET_REQUEST,
   });
 
-  const { data } = await axios.get("/collection/list").catch(function (error) {
-    if (error.response) {
+  await axios
+    .get("/collection/list")
+    .then((res) => {
       dispatch({
-        type: COLLECTION_LIST_GET_FAIL,
-        payload: error.response.data,
+        type: COLLECTION_LIST_GET_SUCCESS,
+        payload: res.data,
       });
-    } else if (error.request) {
-      console.log(error.request);
-      dispatch({
-        type: COLLECTION_LIST_GET_FAIL,
-        payload: error.request.data,
-      });
-    } else {
-      dispatch({
-        type: COLLECTION_LIST_GET_FAIL,
-        payload: error.request.data,
-      });
-    }
-  });
-  dispatch({
-    type: COLLECTION_LIST_GET_SUCCESS,
-    payload: data,
-  });
+    })
+    .catch(function (error) {
+      if (error.response) {
+        dispatch({
+          type: COLLECTION_LIST_GET_FAIL,
+          payload: error.response.data,
+        });
+      } else if (error.request) {
+        console.log(error.request);
+        dispatch({
+          type: COLLECTION_LIST_GET_FAIL,
+          payload: error.request.data,
+        });
+      } else {
+        dispatch({
+          type: COLLECTION_LIST_GET_FAIL,
+          payload: error.request.data,
+        });
+      }
+    });
 };
 
 export const getGame = (id) => async (dispatch) => {
@@ -50,8 +54,14 @@ export const getGame = (id) => async (dispatch) => {
     },
   };
 
-  const { data } = await axios
+  await axios
     .get(`/collection/${id}`, config)
+    .then((res) => {
+      dispatch({
+        type: GAME_GET_SUCCESS,
+        payload: res.data,
+      });
+    })
     .catch(function (error) {
       if (error.response) {
         dispatch({
@@ -71,11 +81,4 @@ export const getGame = (id) => async (dispatch) => {
         });
       }
     });
-
-  console.log(data);
-
-  dispatch({
-    type: GAME_GET_SUCCESS,
-    payload: data,
-  });
 };

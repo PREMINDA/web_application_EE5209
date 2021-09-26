@@ -1,5 +1,4 @@
 import React from "react";
-import procolor from "../../Config/color.js";
 
 const InforDetailcomponent = ({ title, subTitle, color }) => {
   return (

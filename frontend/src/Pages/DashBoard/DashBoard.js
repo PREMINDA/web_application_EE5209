@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { userList } from "../../redux/action/userDetailAction";
 import { NavLink, Route } from "react-router-dom";
@@ -22,7 +22,7 @@ const DashBoard = ({ match, history }) => {
   //const { users } = userListData;
   useEffect(() => {
     dispatch(userList());
-  }, []);
+  });
 
   return (
     <div className="flex flex-row pt-12">

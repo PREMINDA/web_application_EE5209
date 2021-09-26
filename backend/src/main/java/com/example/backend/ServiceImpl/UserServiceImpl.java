@@ -114,7 +114,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         editUser.setRole(getRoleEnumName(user.getRole()).name());
         editUser.setAuthorities(getRoleEnumName(user.getRole()).getAuthorities());
         userRepository.save(editUser);
-        return user;
+        return editUser;
     }
 
     @Override

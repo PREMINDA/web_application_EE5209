@@ -1,16 +1,15 @@
 import React from "react";
-import image1 from "../../Images/ACV_Gold_Edition_Triple.jpg";
+
 import ima from "../../Images/40-407432_ubisoft-logo-ubisoft-logo-png-white.png";
-import procolor from "../../Config/color";
+
 import TextRound from "../TextRound/TextRoundComponent";
-import Button from "../Button/Button";
 
 const GameDetailLeft = ({ gameDetail }) => {
   return (
     <>
       <div className="mx-auto relative">
         <img
-          style={{}}
+          alt={`${gameDetail.gameName}`}
           className="w-full rounded-3xl"
           src={
             gameDetail.imagePaths
@@ -31,6 +30,7 @@ const GameDetailLeft = ({ gameDetail }) => {
             </h1>
             <img
               className="xl:w-40 lg:w-28 md:w-22 w-16 mt-2 md:mt-3 xl:mt-4 "
+              alt={`${gameDetail.gameName} logo`}
               src={ima}
             ></img>
             <div className="flex flex-row mt-4">

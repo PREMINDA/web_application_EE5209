@@ -49,7 +49,3 @@ const TextInputComponent = ({
 };
 
 export default TextInputComponent;
-
-{
-  /*  */
-}

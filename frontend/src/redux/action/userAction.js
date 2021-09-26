@@ -9,71 +9,71 @@ import {
 } from "../constant/userConstant";
 import axios from "axios";
 export const login = (userData) => async (dispatch) => {
-  try {
-    dispatch({
-      type: USER_LOGIN_REQUEST,
-    });
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+  dispatch({
+    type: USER_LOGIN_REQUEST,
+  });
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
-    const { data, headers } = await axios
-      .post("/user/login", { ...userData }, config)
-      .catch(function (error) {
-        if (error.response) {
-          dispatch({
-            type: USER_LOGIN_FAIL,
-            payload: error.response.data,
-          });
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log("Error", error.message);
-        }
+  await axios
+    .post("/user/login", { ...userData }, config)
+    .then((res) => {
+      delete res.data.password;
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: res.data,
       });
-    delete data.password;
-    dispatch({
-      type: USER_LOGIN_SUCCESS,
-      payload: data,
+      localStorage.setItem("jwttoken", res.headers.jwttoken);
+      localStorage.setItem("userInfo", JSON.stringify(res.data));
+    })
+    .catch(function (error) {
+      if (error.response) {
+        dispatch({
+          type: USER_LOGIN_FAIL,
+          payload: error.response.data,
+        });
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log("Error", error.message);
+      }
     });
-    localStorage.setItem("jwttoken", headers.jwttoken);
-    localStorage.setItem("userInfo", JSON.stringify(data));
-  } catch (e) {}
 };
 
 export const userRegister = (userRegData) => async (dispatch) => {
-  try {
-    dispatch({
-      type: USER_REGISTER_REQUEST,
-    });
+  dispatch({
+    type: USER_REGISTER_REQUEST,
+  });
 
-    const config = {
-      header: {
-        "Content-Type": "application/json",
-      },
-    };
+  const config = {
+    header: {
+      "Content-Type": "application/json",
+    },
+  };
 
-    const { data } = await axios
-      .post("/user/register", { ...userRegData }, config)
-      .catch(function (error) {
-        if (error.response) {
-          dispatch({
-            type: USER_REGISTER_FAIL,
-            payload: error.response.data,
-          });
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log("Error", error.message);
-        }
+  await axios
+    .post("/user/register", { ...userRegData }, config)
+    .then((res) => {
+      dispatch({
+        type: USER_REGISTER_SUCCESS,
+        payload: res.data,
       });
-    dispatch({
-      type: USER_REGISTER_SUCCESS,
-      payload: data,
+    })
+    .catch(function (error) {
+      if (error.response) {
+        dispatch({
+          type: USER_REGISTER_FAIL,
+          payload: error.response.data,
+        });
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log("Error", error.message);
+      }
     });
-  } catch (e) {}
 };
 
 export const logout = () => (dispatch) => {

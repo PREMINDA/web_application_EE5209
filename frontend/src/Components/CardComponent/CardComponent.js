@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import imagelogo from "../../Images/40-407432_ubisoft-logo-ubisoft-logo-png-white.png";
-import imagelogo2 from "../../Images/ACV_Gold_Edition_Triple.jpg";
+
 import TextRound from "../TextRound/TextRoundComponent";
 import Rating from "../RatingComponent/Rating.js";
 import Seperator from "../Seperator/Seperator";
 const CardComponent = ({ id, game }) => {
-  const arr = ["WAR", "ACTION", "ADVENTURE", "RPG"];
   return (
     <div
       style={{ background: "#1C1E4B" }}

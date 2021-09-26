@@ -1,4 +1,3 @@
-import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Popup from "../../Components/PopUp/Popup";
@@ -24,15 +23,11 @@ const GameList = () => {
       setIsOpen(true);
     }
     dispatch(getCollectionList());
-  }, []);
+  }, [newGame, dispatch]);
 
   function closeModal() {
     setIsOpen(false);
     dispatch(emptyGame());
-  }
-
-  function openModal() {
-    setIsOpen(true);
   }
 
   const onDelete = (id) => {
@@ -40,8 +35,6 @@ const GameList = () => {
     dispatch(deleteGame(id));
     window.location.reload(true);
   };
-
-  const addImage = (id) => {};
 
   return (
     <>
@@ -58,7 +51,7 @@ const GameList = () => {
           tag={["Game Name", "Game ID", "Price"]}
         />
       )}
-      <div className="grid grid-cols-5 gap-4 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
         {games &&
           games.map((game) => (
             <AdminGameCard

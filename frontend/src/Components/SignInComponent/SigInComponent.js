@@ -17,7 +17,7 @@ const SigInComponent = ({ history }) => {
     if (userInfo) {
       history.push("/");
     }
-  }, [userInfo]);
+  }, [userInfo, history]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -69,6 +69,17 @@ const SigInComponent = ({ history }) => {
             <SignInButton title={"Sign in"} type="submit" />
           </div>
         </form>
+        <div className="flex justify-center">
+          <h4 className="text-white text-center text-lg mr-4">
+            Don't Have an account ?
+          </h4>
+          <a
+            href="register"
+            className="text-pricingcolor text-center text-lg mr-4"
+          >
+            Sign Up
+          </a>
+        </div>
       </div>
     </div>
   );
