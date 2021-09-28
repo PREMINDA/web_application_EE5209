@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getGame } from "../../redux/action/collectionListAction";
 import InforComponent from "../../Components/GameInfoComponent/InfoComponent";
@@ -6,11 +6,13 @@ import GameDetailLeft from "../../Components/GameDetailComponent/GameDetailLeft"
 
 const GameDetail = ({ match }) => {
   const dispatch = useDispatch();
+  const [gameId, setGameId] = useState(0);
   const selectedGame = useSelector((state) => state.game);
   const { gameDetail } = selectedGame;
 
   useEffect(() => {
     dispatch(getGame(match.params.id));
+    setGameId(match.params.id);
   }, [dispatch]);
 
   console.log(gameDetail);
@@ -22,6 +24,7 @@ const GameDetail = ({ match }) => {
       </div>
       {gameDetail && (
         <InforComponent
+          gameId={gameId}
           sys={gameDetail.systemRequirements}
           dev={gameDetail.developerInformation}
         />

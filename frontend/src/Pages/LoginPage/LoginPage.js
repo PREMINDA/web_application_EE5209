@@ -1,12 +1,11 @@
 import React from "react";
 import Dangermsg from "../../Components/DangerMsg/Dangermsg";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RotateSpinner } from "react-spinners-kit";
 
 import SigInComponent from "../../Components/SignInComponent/SigInComponent";
 
 const LoginPage = ({ history }) => {
-  const dispatch = useDispatch();
   const loginData = useSelector((state) => state.userLogin);
   const { error, loading } = loginData;
 

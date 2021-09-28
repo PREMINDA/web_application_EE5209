@@ -8,10 +8,9 @@ import Home from "./Pages/Home/Home";
 import HeaderComponent from "./Components/Header/HeaderComponent";
 import DashBoard from "./Pages/DashBoard/DashBoard";
 import GameDetail from "./Pages/GameDetail/GameDetail";
+import cart from "./Pages/Cart/cart";
 
 function App() {
-  useEffect(() => {}, []);
-
   return (
     <Router>
       <>
@@ -22,6 +21,7 @@ function App() {
           <Route exact path="/collection" component={CollectionPage} />
           <Route path="/collection/:id" component={GameDetail} />
           <Route path="/dashboard" component={DashBoard} />
+          <Route path="/cart" component={cart} />
           <Route exact path="/" component={Home} />
         </main>
       </>

@@ -1,7 +1,14 @@
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-const PopUpWarn = ({ isOpen, closeModal, message }) => {
+const ImageAddPopUp = ({ isOpen, closeModal, setImageFile, submitModal }) => {
+  const onSelect = (e) => {
+    Object.values(e.target.files).forEach((element) => {
+      //console.log(element[0]);
+      setImageFile((old) => [...old, element]);
+    });
+  };
+
   return (
     <div>
       <Transition appear show={isOpen} as={Fragment}>
@@ -39,20 +46,28 @@ const PopUpWarn = ({ isOpen, closeModal, message }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-red-500 shadow-xl rounded-2xl">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left border-2 border-white align-middle transition-all transform bg-lightviolate shadow-xl rounded-2xl">
                 <Dialog.Title
                   as="h3"
-                  className="text-2xl mb-4 font-medium leading-6 text-white"
+                  className="text-2xl mb-4 font-medium leading-6 text-gray-900"
                 >
-                  {message}
+                  Edit Profile
                 </Dialog.Title>
-                <div className="mt-4 flex">
+                <input multiple type="file" onChange={onSelect} />
+                <div className="mt-4 flex justify-around">
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
+                    onClick={() => closeModal()}
                   >
-                    Got it, thanks!
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => submitModal()}
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                  >
+                    Submit
                   </button>
                 </div>
               </div>
@@ -64,4 +79,4 @@ const PopUpWarn = ({ isOpen, closeModal, message }) => {
   );
 };
 
-export default PopUpWarn;
+export default ImageAddPopUp;

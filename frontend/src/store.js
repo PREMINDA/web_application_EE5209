@@ -43,7 +43,6 @@ const initialState = {
   userLogin: { userInfo: userInfoFormStorage },
 };
 const middleware = [thunk];
-
 const store = createStore(
   reducer,
   initialState,

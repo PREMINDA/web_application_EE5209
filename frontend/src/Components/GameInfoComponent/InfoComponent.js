@@ -1,10 +1,16 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import procolor from "../../Config/color.js";
 import InforDetailcomponent from "../GameInfoDetailComponent/InforDetailComponent.js";
 import Seperator from "../Seperator/Seperator.js";
 import Button from "../Button/Button.js";
+import { addToCart } from "../../redux/action/cartAction";
 
-const InforComponent = ({ sys, dev }) => {
+const InforComponent = ({ sys, dev, gameId }) => {
+  const dispatch = useDispatch();
+  const addGameToCart = () => {
+    dispatch(addToCart(gameId));
+  };
   return (
     <div className="w-72">
       <div
@@ -52,7 +58,11 @@ const InforComponent = ({ sys, dev }) => {
               className="mt-3"
               style={{ display: "flex", justifyContent: "center" }}
             >
-              <Button title={"Add To Cart"} color={procolor.maincolor} />
+              <Button
+                title={"Add To Cart"}
+                color={procolor.maincolor}
+                func={addGameToCart}
+              />
             </div>
             <div
               className="mt-3"

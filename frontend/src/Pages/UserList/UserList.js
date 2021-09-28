@@ -8,6 +8,7 @@ import UserCard from "../../Components/UserCard/UserCard";
 import PopUpWarn from "../../Components/PopUpWarn/PopUpWarn";
 import EditProfilePopUp from "../../Components/EditProfilePopUp/EditProfilePopUp";
 import { userEdit } from "../../redux/action/userDetailAction";
+import { RotateSpinner } from "react-spinners-kit";
 const UserList = () => {
   //User register complete
   let [isOpen, setIsOpen] = useState(false);
@@ -35,7 +36,7 @@ const UserList = () => {
 
   //editedUser success Msg
   const editUserMsg = useSelector((state) => state.userEdit);
-  const { success } = editUserMsg;
+  const { success, loading } = editUserMsg;
 
   useEffect(() => {
     if (addnewUser) {
@@ -149,7 +150,9 @@ const UserList = () => {
             />
           ))
         ) : (
-          <h1>Loading</h1>
+          <div className="w-screen h-screen flex justify-center flex-wrap content-center">
+            <RotateSpinner size={80} color="#00F0FF" loading={loading} />
+          </div>
         )}
       </div>
     </div>

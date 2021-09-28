@@ -17,7 +17,7 @@ const SliderItem = ({ url, price, arr, name }) => {
           borderRadius: "16px",
           height: "640px",
           background:
-            "linear-gradient(30deg,rgba(8,10,49,0.8) 0%, rgba(8,10,49,0.6) 40%, rgba(8,10,49,0) 100%)",
+            "linear-gradient(30deg,rgba(8,10,49,0.8) 0%, rgba(8,10,49,0.2) 40%, rgba(8,10,49,0) 100%)",
         }}
         className="relative h-full w-full"
       >

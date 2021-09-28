@@ -30,44 +30,6 @@ public class GameServiceImpl implements GameService {
         this.gamesRepository = collectionRepository;
     }
 
-    public void uploadImage(MultipartFile[] imageFile, Game game) throws IOException {
-        String configFilePath = new File(System.getProperty("user.dir")).getParent()+"/frontend";
-        String saveLocation = String.format("/src/images/%s",game.getGameName());
-        new File(configFilePath+saveLocation).mkdirs();
-        int i = 1;
-        ArrayList<String> asd = new ArrayList<>();
-        for (MultipartFile mp : imageFile)
-        {
-            byte[] bytes = mp.getBytes();
-            Path path = Paths.get(configFilePath+saveLocation+"/"+i+".jpg");
-            asd.add(saveLocation+"/");
-            Files.write(path,bytes);
-            i++;
-        }
-        System.out.println(asd);
-
-    }
-
-    public void gameUpload(MultipartFile[] imageFile, Game game, MultipartFile logo) throws IOException{
-        Game collection = new Game();
-        collection.setGameId(generateUserId());
-        collection.setGameName(game.getGameName());
-        collection.setPrice(game.getPrice());
-        collection.setDescription(game.getDescription());
-        collection.setStoryLine(game.getStoryLine());
-        collection.setRating(game.getRating());
-        collection.setAvailability(game.getAvailability());
-        collection.setUploadDate(new Date());
-        collection.setDeveloperInformation(game.getDeveloperInformation());
-        collection.setSystemRequirements(game.getSystemRequirements());
-        collection.setImagePaths(setImages(imageFile, game.getGameName()));
-        collection.setCategory(game.getCategory());
-        setLogo(logo,game.getGameName());
-       collection.setReleaseDate(new Date(2021,1,1));
-        gamesRepository.save(collection);
-
-    };
-
     public Game uploadGame(Game coll){
         Game newGame = new Game();
         newGame.setGameId(generateUserId());
@@ -109,6 +71,12 @@ public class GameServiceImpl implements GameService {
            System.out.println(game);
     }
 
+    public void uploadLogo(Long id,MultipartFile images) throws IOException{
+        Game game = gamesRepository.findById(id).get();
+        setLogo(images,game.getGameName());
+
+    }
+
     public Game getSelectGame (Long id)
     {
         return gamesRepository.findById(id).get();
@@ -120,10 +88,8 @@ public class GameServiceImpl implements GameService {
 
     private String setImages(MultipartFile[] images, String gameName) throws IOException
     {
-
         if(images.length>0)
         {
-
             String configFilePath = new File(System.getProperty("user.dir")).getParent()+"/frontend";
             String saveLocation = String.format("/src/images/%s",gameName);
             new File(configFilePath+saveLocation).mkdirs();
@@ -139,8 +105,8 @@ public class GameServiceImpl implements GameService {
         }
         return null;
     }
-    private void setLogo (MultipartFile logo,String gameName) throws IOException
-    {
+
+    private void setLogo (MultipartFile logo,String gameName) throws IOException {
 
         if(!logo.isEmpty())
         {

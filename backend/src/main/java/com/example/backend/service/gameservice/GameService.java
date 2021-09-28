@@ -9,12 +9,12 @@ import java.util.List;
 public interface GameService {
 
 
-    void uploadImage(MultipartFile[] imageFile, Game game) throws IOException;
-    void gameUpload(MultipartFile[] imageFile, Game game, MultipartFile logo) throws IOException;
     Game uploadGame(Game coll);
     List<Game> getGameList();
     void deleteGame(Long id);
     void uploadImageGallery(Long id,MultipartFile[] images) throws IOException;
+    void uploadLogo(Long id,MultipartFile images) throws IOException;
     Game getSelectGame (Long id);
+
 
 }

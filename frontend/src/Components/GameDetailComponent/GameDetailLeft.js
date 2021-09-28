@@ -31,7 +31,12 @@ const GameDetailLeft = ({ gameDetail }) => {
             <img
               className="xl:w-40 lg:w-28 md:w-22 w-16 mt-2 md:mt-3 xl:mt-4 "
               alt={`${gameDetail.gameName} logo`}
-              src={ima}
+              src={
+                gameDetail.imagePaths
+                  ? require(`../../Images/${gameDetail.gameName}/logo.png`)
+                      .default
+                  : require(`../../Images/1.png`).default
+              }
             ></img>
             <div className="flex flex-row mt-4">
               {gameDetail.category.map((text) => (

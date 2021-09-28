@@ -26,29 +26,24 @@ public class GameController {
         this.gameService = collectionService;
     }
 
-    @PostMapping("/asd")
-    public void imageUpload(@RequestParam("image") MultipartFile[] image,@RequestParam("name") String data) throws IOException {
-        System.out.println(image);
-        Game gameDetail = new ObjectMapper().readValue(data, Game.class);
-        gameService.uploadImage(image,gameDetail);
-    }
-    @PostMapping("/upload")
-    public void gameUpload(@RequestParam(value = "image",required = false) MultipartFile[] image,@RequestParam("name") String data,@RequestParam(value = "logo",required = false) MultipartFile logo) throws IOException {
-        System.out.println(logo.getSize());
-        Game gameDetail = new ObjectMapper().readValue(data, Game.class);
-        gameService.gameUpload(image,gameDetail,logo);
-    }
-
     @PostMapping("/add")
     public ResponseEntity<Game> uploadGame(@RequestBody Game coll) throws IOException {
          Game newGame = gameService.uploadGame(coll);
         return new ResponseEntity<Game>(newGame, HttpStatus.OK);
     }
 
-    @PostMapping("/addimage/{id}")
+    @PutMapping("/addimage/{id}")
     public ResponseEntity<HttpResponse> uploadImage(@PathVariable("id") long id,@RequestParam(value = "images",required = false) MultipartFile[] images) throws IOException {
+
         gameService.uploadImageGallery(id,images);
-        return response(HttpStatus.NO_CONTENT,"User Deleted successfully");
+        return response(HttpStatus.NO_CONTENT,"Gallery Added successfully");
+    }
+
+    @PutMapping("/addlogo/{id}")
+    public ResponseEntity<HttpResponse> uploadLogo(@PathVariable("id") long id,@RequestParam(value = "images",required = false) MultipartFile images) throws IOException {
+
+        gameService.uploadLogo(id,images);
+        return response(HttpStatus.NO_CONTENT,"Logo Added successfully");
     }
 
 

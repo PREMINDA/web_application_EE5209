@@ -2,7 +2,8 @@ import axios from "axios";
 
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constant/cartConstant";
 
-export const addToCart = (id, qty) => async (dispatch, getState) => {
+export const addToCart = (id) => async (dispatch, getState) => {
+  console.log(id);
   await axios.get(`/collection/${id}`).then((res) => {
     dispatch({
       type: CART_ADD_ITEM,
@@ -11,7 +12,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
         gameName: res.data.gameName,
         price: res.data.price,
         stockCount: res.data.stockCount,
-        qty = 1,
+        qty: 1,
       },
     });
   });

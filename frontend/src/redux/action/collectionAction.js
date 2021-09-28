@@ -45,7 +45,29 @@ export const deleteGame = (id) => async (dispatch) => {
   await axios.delete(`/collection/delete/${id}`);
 };
 
-export const addGaller = (id) => async (dispatch) => {};
+export const addGallery = (id, file) => async (dispatch) => {
+  await axios({
+    method: "put",
+    url: `/collection/addimage/${id}`,
+    data: file,
+    headers: {
+      "Content-Type":
+        "multipart/form-data; boundary=<calculated when request is sent>",
+    },
+  });
+};
+
+export const addLogo = (id, file) => async (dispatch) => {
+  await axios({
+    method: "put",
+    url: `/collection/addlogo/${id}`,
+    data: file,
+    headers: {
+      "Content-Type":
+        "multipart/form-data; boundary=<calculated when request is sent>",
+    },
+  });
+};
 
 export const emptyGame = () => async (dispatch) => {
   setTimeout(function () {

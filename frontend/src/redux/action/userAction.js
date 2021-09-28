@@ -79,6 +79,7 @@ export const userRegister = (userRegData) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   localStorage.removeItem("jwttoken");
+  localStorage.removeItem("cartItem");
 
   dispatch({ type: USER_LOGIN_LOGOUT });
 };

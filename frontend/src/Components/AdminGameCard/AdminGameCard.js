@@ -8,7 +8,7 @@ import {
   PlusCircleIcon,
 } from "@heroicons/react/outline";
 
-const AdminGameCard = ({ id, game, onDelete }) => {
+const AdminGameCard = ({ id, game, onDelete, onAdd, onLogoAdd }) => {
   return (
     <>
       <div className="w-80 bg-lightBlue rounded-2xl">
@@ -46,11 +46,17 @@ const AdminGameCard = ({ id, game, onDelete }) => {
               <TrashIcon className="h-10 w-10 mt-1 mx-auto" />
               <p className="px-1 mb-1 text-sm">Delete Game</p>
             </div>
-            <div className="w-1/3  bg-lightviolate rounded-2xl">
+            <div
+              onClick={() => onAdd(id)}
+              className="w-1/3  rounded-2xl text-center cursor-pointer transition duration-500 ease-in-out bg-lightviolate hover:bg-red-600 transform  hover:scale-102"
+            >
               <PhotographIcon className="h-10  mt-1 mx-auto" />
               <p className="px-1 mb-1 text-sm">Add Images</p>
             </div>
-            <div className="w-1/3 bg-lightviolate rounded-2xl">
+            <div
+              onClick={() => onLogoAdd(id)}
+              className="w-1/3  rounded-2xl text-center cursor-pointer transition duration-500 ease-in-out bg-lightviolate hover:bg-red-600 transform  hover:scale-102"
+            >
               <PlusCircleIcon className="h-10  mt-1 mx-auto" />
               <p className="px-1 mb-1 text-sm">Add Logo</p>
             </div>
