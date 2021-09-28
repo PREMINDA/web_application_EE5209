@@ -5,7 +5,11 @@ import {
   PlusCircleIcon,
   MinusCircleIcon,
 } from "@heroicons/react/outline";
-import { removeItemFromCart } from "../../redux/action/cartAction";
+import {
+  removeItemFromCart,
+  increaseItem,
+  reduseItem,
+} from "../../redux/action/cartAction";
 
 const CartItemComponent = ({ game }) => {
   const dispatch = useDispatch();
@@ -13,19 +17,11 @@ const CartItemComponent = ({ game }) => {
   const [itemCount, setItemCount] = useState(game.qty);
 
   const cartItemControllerAdd = () => {
-    if (itemCount === game.stockCount) {
-      setItemCount(game.stockCount);
-    } else {
-      setItemCount(itemCount + 1);
-    }
+    dispatch(increaseItem(game));
   };
 
   const cartItemControllerMinus = () => {
-    if (itemCount === 1) {
-      setItemCount(1);
-    } else {
-      setItemCount(itemCount - 1);
-    }
+    dispatch(reduseItem(game));
   };
 
   const removeItem = () => {
@@ -57,7 +53,14 @@ const CartItemComponent = ({ game }) => {
           </div>
 
           <div className="text-xl w-14 select-none">
-            <h1 className="text-xl m-0 w-full text-center">{itemCount}</h1>
+            <h1
+              onChange={(e) => {
+                console.log(e);
+              }}
+              className="text-xl m-0 w-full text-center"
+            >
+              {game.qty}
+            </h1>
           </div>
           <div className="m-0 text-xl w-8 cursor-pointer select-none">
             <PlusCircleIcon

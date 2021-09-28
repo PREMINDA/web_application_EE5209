@@ -1,7 +1,4 @@
 import React from "react";
-
-import ima from "../../Images/40-407432_ubisoft-logo-ubisoft-logo-png-white.png";
-
 import TextRound from "../TextRound/TextRoundComponent";
 
 const GameDetailLeft = ({ gameDetail }) => {

@@ -14,7 +14,7 @@ const CartDownComponent = () => {
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="inline-flex justify-center w-full rounded-md  hover:border-blue-500  shadow-sm px-4 py-2 text-sm font-medium text-white">
-          <ShoppingCartIcon className="w-10 h-10 text-white" />
+          <ShoppingCartIcon className="w-8 stroke-1 h-8 text-pink-600" />
         </Menu.Button>
       </div>
       <Transition
