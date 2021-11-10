@@ -1,4 +1,14 @@
 export const addItemTocart = (cartItems, cartItemToAdd) => {
+  if (cartItemToAdd.qty === cartItemToAdd.stockCount) {
+    return cartItems.map((cartitem) =>
+      cartitem.id === cartItemToAdd.id
+        ? {
+            ...cartitem,
+            qty: cartitem.qty,
+          }
+        : cartitem
+    );
+  }
   return cartItems.map((cartitem) =>
     cartitem.id === cartItemToAdd.id
       ? {

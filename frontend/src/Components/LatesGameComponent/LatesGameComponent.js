@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import procolor from "../../Config/color";
 
 const LatesGame = ({ style, game }) => {
+  const onClickGame = () => {};
+
   return (
-    <Link className="no-underline" to="/">
+    <Link className="no-underline" to={`/collection/${game.id}`}>
       <div style={{ ...style }} className="w-72  ">
         <div className=" rounded-xl h-96 overflow-hidden">
           <img
