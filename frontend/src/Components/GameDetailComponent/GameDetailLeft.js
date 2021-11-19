@@ -26,7 +26,7 @@ const GameDetailLeft = ({ gameDetail }) => {
               {gameDetail.gameName}
             </h1>
             <img
-              className="xl:w-40 lg:w-28 md:w-22 w-16 mt-2 md:mt-3 xl:mt-4 "
+              className="xl:w-36 lg:w-28 md:w-22 w-16 mt-2 md:mt-3 xl:mt-4 "
               alt={`${gameDetail.gameName} logo`}
               src={
                 gameDetail.imagePaths

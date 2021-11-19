@@ -79,7 +79,7 @@ const CartItemComponent = ({ game }) => {
         </div>
       </div>
       <div className="text-white flex text-center w-28 flex-wrap content-center">
-        <h1 className="m-0 text-xl w-full">{game.qty}</h1>
+        <h1 className="m-0 text-xl w-full">{game.totalPrice}.00$</h1>
       </div>
     </div>
   );

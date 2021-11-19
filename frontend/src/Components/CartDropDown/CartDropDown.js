@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Fragment } from "react";
 
@@ -9,12 +9,16 @@ import { ShoppingCartIcon } from "@heroicons/react/outline";
 const CartDownComponent = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  const itemCounter=()=>{
 
+    return cartItems ===null?0: cartItems.length;
+  }
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="inline-flex justify-center w-full rounded-md  hover:border-blue-500  shadow-sm px-4 py-2 text-sm font-medium text-white">
           <ShoppingCartIcon className="w-8 stroke-1 h-8 text-pink-600" />
+          <label>{itemCounter()}</label>
         </Menu.Button>
       </div>
       <Transition

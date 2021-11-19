@@ -38,7 +38,11 @@ const CardComponent = ({ id, game }) => {
             >
               {game.price}.00$
             </div>
-            <img src={imagelogo} alt="" className="w-24 mr-0 rounded-3xl" />
+            <img src={
+            game.imagePaths
+              ? require(`../../Images/${game.gameName}/logo.png`).default
+              : require(`../../Images/1.png`).default
+          } alt="" className="object-scale-down h-8 w-full  mr-0" />
           </div>
           <div className="ml-8">
             <div className="" style={{ color: "#AD00FF", fontSize: "12px" }}>

@@ -3,12 +3,12 @@ import procolor from "../../Config/color.js";
 
 const Button = ({ style, title, color = procolor.lightViolet, func }) => {
   return (
-    <div
+    <button 
       onClick={() => func()}
       style={{
         width: "160px",
         height: "32px",
-        background: color,
+        
         border: `1px solid ${procolor.pricingColo}`,
         borderRadius: "12px",
         color: "white",
@@ -17,10 +17,10 @@ const Button = ({ style, title, color = procolor.lightViolet, func }) => {
         alignItems: "center",
         ...style,
       }}
-      className="font-cart cursor-pointer"
+      className={`font-cart cursor-pointer bg-lightviolate hover:bg-green-600 active:bg-green-900`}
     >
       {title}
-    </div>
+    </button >
   );
 };
 

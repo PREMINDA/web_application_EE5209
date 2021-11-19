@@ -17,6 +17,7 @@ export const addToCart = (id) => async (dispatch, getState) => {
         gameName: res.data.gameName,
         price: res.data.price,
         stockCount: res.data.stockCount,
+        totalPrice: res.data.price,
         qty: 1,
       },
     });

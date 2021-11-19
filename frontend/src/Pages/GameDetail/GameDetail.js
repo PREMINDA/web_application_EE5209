@@ -15,7 +15,6 @@ const GameDetail = ({ match }) => {
     setGameId(match.params.id);
   }, [dispatch]);
 
-  console.log(gameDetail);
 
   return (
     <div className="flex">

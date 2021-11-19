@@ -14,6 +14,7 @@ export const addItemTocart = (cartItems, cartItemToAdd) => {
       ? {
           ...cartitem,
           qty: cartitem.qty + 1,
+          totalPrice: (cartitem.qty+1)*cartitem.price
         }
       : cartitem
   );
@@ -31,6 +32,7 @@ export const reduseitem = (cartItems, cartItemReduseTo) => {
       ? {
           ...cartitem,
           qty: cartitem.qty - 1,
+          totalPrice: (cartitem.qty-1)*cartitem.price
         }
       : cartitem
   );

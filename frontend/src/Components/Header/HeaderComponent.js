@@ -11,7 +11,7 @@ import CartDownComponent from "../CartDropDown/CartDropDown";
 const navigation = [
   { name: "Home", href: "/", current: false },
   { name: "Collection", href: "/collection", current: true },
-  { name: "About Us", href: "/", current: false },
+  { name: "Cart", href: "/cart", current: false },
 ];
 
 function classNames(...classes) {

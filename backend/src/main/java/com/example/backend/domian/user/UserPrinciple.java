@@ -21,7 +21,6 @@ public class UserPrinciple implements UserDetails {
 
         Collection<SimpleGrantedAuthority> aut = Arrays.stream(this.user.getAuthorities()).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 
-        System.out.println(".................................."+aut);
         return  aut;
     }
 
