@@ -8,11 +8,12 @@ import {
   ViewGridAddIcon,
   UserAddIcon,
   CollectionIcon,
+  ClipboardCheckIcon
 } from "@heroicons/react/outline";
 
 import NewUser from "../AddNewUser/NewUser";
 import AddGame from "../AddGame/AddGame";
-
+import Orders from "../UserOrderpage/UserOrder"
 import UserList from "../UserList/UserList";
 import GameList from "../GameList/GameList";
 
@@ -29,24 +30,34 @@ const DashBoard = ({ match, history }) => {
       <div className="w-16 h-screen fixed flex justify-center bg-maincolor border-r-2 border-gray-700">
         <div>
           <NavLink to={`${match.path}/users`}>
-            <div className="w-12 mt-5 h-12 justify-self-center flex flex-wrap content-center rounded-xl  bg-lightviolate border-transparent">
+            <div className="w-12 mx-auto mt-4 h-12 justify-self-center flex flex-wrap content-center rounded-xl  bg-lightviolate border-transparent">
               <UsersIcon className="h-8 w-8 text-white mx-auto" />
             </div>
+            <label className="text-white text-xs text-center w-full">User List</label>
           </NavLink>
           <NavLink to={`${match.path}/games`}>
-            <div className="w-12 mt-5 h-12 justify-self-center flex flex-wrap content-center rounded-xl  bg-lightviolate">
+            <div className="w-12 mx-auto mt-4 h-12 justify-self-center flex flex-wrap content-center rounded-xl  bg-lightviolate">
               <CollectionIcon className="h-8 w-8 text-white mx-auto" />
             </div>
+            <label className="text-white text-xs text-center w-full">Game List</label>
           </NavLink>
           <NavLink to={`${match.path}/addgame`}>
-            <div className="w-12 mt-5 h-12 justify-self-center flex flex-wrap content-center rounded-xl  bg-lightviolate">
+            <div className="w-12 mx-auto mt-4 h-12 justify-self-center flex flex-wrap content-center rounded-xl  bg-lightviolate">
               <ViewGridAddIcon className="h-8 w-8 text-white mx-auto" />
             </div>
+            <label className="text-white text-xs text-center w-full">Add Game</label>
           </NavLink>
           <NavLink to={`${match.path}/adduser`}>
-            <div className="w-12 mt-5 h-12 justify-self-center flex flex-wrap content-center rounded-xl  bg-lightviolate">
+            <div className="w-12 mx-auto mt-4 h-12 justify-self-center flex flex-wrap content-center rounded-xl  bg-lightviolate">
               <UserAddIcon className="h-8 w-8 text-white mx-auto" />
             </div>
+            <label className="text-white text-xs text-center w-full">Add User</label>
+          </NavLink>
+          <NavLink to={`${match.path}/orders`}>
+            <div className="w-12 mx-auto mt-4 h-12 justify-self-center flex flex-wrap content-center rounded-xl  bg-lightviolate">
+              <ClipboardCheckIcon className="h-8 w-8 text-white mx-auto" />
+            </div>
+            <label className="text-white text-xs text-center w-full">Orders</label>
           </NavLink>
         </div>
       </div>
@@ -55,6 +66,7 @@ const DashBoard = ({ match, history }) => {
         <Route exact path={`${match.path}/games`} component={GameList} />
         <Route path={`${match.path}/addgame`} component={AddGame} />
         <Route path={`${match.path}/adduser`} component={NewUser} />
+        <Route path={`${match.path}/orders`} component={Orders} />
       </div>
     </div>
   );

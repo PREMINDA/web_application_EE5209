@@ -7,6 +7,7 @@ import {
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
 } from "../constant/userConstant";
+import {CART_EMPTY} from "../constant/cartConstant"
 import axios from "axios";
 export const login = (userData) => async (dispatch) => {
   dispatch({
@@ -77,6 +78,9 @@ export const userRegister = (userRegData) => async (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
+  dispatch({
+    type:CART_EMPTY
+})
   localStorage.removeItem("userInfo");
   localStorage.removeItem("jwttoken");
   localStorage.removeItem("cartItem");

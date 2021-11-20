@@ -3,6 +3,7 @@ import {
   CART_REMOVE_ITEM,
   CART_REDUCE_COUNT,
   CART_INCREASE_COUNT,
+  CART_EMPTY
 } from "../constant/cartConstant";
 import { addItemTocart, reduseitem } from "./cartUtil";
 export const cartReducer = (state = { cartItems: [] }, action) => {
@@ -41,6 +42,11 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       return {
         ...state,
         cartItems: addItemTocart(state.cartItems, action.payload),
+      };
+      case CART_EMPTY:
+      return {
+        ...state,
+        cartItems:[],
       };
     default:
       return state;
