@@ -1,4 +1,4 @@
-package com.example.backend.service.gameservice;
+package com.example.backend.service;
 
 import com.example.backend.domian.collection.Game;
 import org.springframework.web.multipart.MultipartFile;

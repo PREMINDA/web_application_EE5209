@@ -3,8 +3,7 @@ package com.example.backend.controller;
 
 import com.example.backend.domian.HttpResponse;
 import com.example.backend.domian.collection.Game;
-import com.example.backend.service.gameservice.GameService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.backend.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

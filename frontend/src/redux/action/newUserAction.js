@@ -12,9 +12,6 @@ export const addNewUser = (newUserData) => async (dispatch) => {
   });
 
   const JWTToken = localStorage.getItem("jwttoken");
-
-  console.log(JWTToken);
-
   await axios
     .post(
       "/user/add",

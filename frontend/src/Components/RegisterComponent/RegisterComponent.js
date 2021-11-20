@@ -4,7 +4,7 @@ import TextInputComponent from "../TextInputComponent/TextInputComponent";
 
 import { useDispatch, useSelector } from "react-redux";
 import SignInButton from "../Button/SignInButton";
-
+// import { login } from "../../redux/action/userAction.js";
 import { userRegister } from "../../redux/action/userAction";
 
 const Register = ({ history }) => {
@@ -12,7 +12,7 @@ const Register = ({ history }) => {
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
-  const userRegisterData = useSelector((state) => state.userRegister);
+  // const userRegisterData = useSelector((state) => state.userRegister);
 
   const [inputValue, setInputValue] = useState({
     username: "",
@@ -35,6 +35,8 @@ const Register = ({ history }) => {
       setMessage("Password Not Match");
     } else {
       dispatch(userRegister(inputValue));
+      // dispatch(login({ username: inputValue.username, password: inputValue.password }))
+      history.push("/");
     }
   };
 

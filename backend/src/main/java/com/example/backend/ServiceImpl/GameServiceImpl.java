@@ -2,7 +2,7 @@ package com.example.backend.ServiceImpl;
 
 import com.example.backend.domian.collection.Game;
 import com.example.backend.repository.GameRepository;
-import com.example.backend.service.gameservice.GameService;
+import com.example.backend.service.GameService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional

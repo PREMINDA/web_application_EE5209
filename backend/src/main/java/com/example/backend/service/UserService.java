@@ -1,4 +1,4 @@
-package com.example.backend.service.userservice;
+package com.example.backend.service;
 
 import com.example.backend.domian.user.User;
 import com.example.backend.exception.domain.user.EmailExistException;

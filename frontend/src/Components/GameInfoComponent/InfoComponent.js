@@ -1,15 +1,30 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React,{useState} from "react";
+import { useDispatch,useSelector } from "react-redux";
 import procolor from "../../Config/color.js";
 import InforDetailcomponent from "../GameInfoDetailComponent/InforDetailComponent.js";
 import Seperator from "../Seperator/Seperator.js";
 import Button from "../Button/Button.js";
 import { addToCart } from "../../redux/action/cartAction";
-
+import PopUpWarn from "../PopUpWarn/PopUpWarn.js";
 const InforComponent = ({ sys, dev, gameId }) => {
+ const [open,setOpen] = useState(false);
   const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const closeModal=()=>
+  {
+    setOpen(false);
+  }
+
   const addGameToCart = () => {
-    dispatch(addToCart(gameId));
+    if(userInfo === null)
+    {
+      setOpen(true);
+    }else
+    {
+      dispatch(addToCart(gameId));
+    }
   };
   return (
     <div className="w-72">
@@ -73,6 +88,7 @@ const InforComponent = ({ sys, dev, gameId }) => {
           </div>
         </div>
       </div>
+       <PopUpWarn isOpen={open} closeModal={closeModal} message="Befor Add To Cart You Have to login first"/> 
     </div>
   );
 };

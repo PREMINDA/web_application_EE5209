@@ -37,7 +37,7 @@ const CartDownComponent = () => {
           <div className="py-1 px-2 rounded-xl ">
             {cartItems &&
               cartItems.map((game) => (
-                <Menu.Item key={game.id}>
+                <Menu.Item key={game.game.id}>
                   {({ active }) => (
                     <div className="my-2 flex justify-between bg-lightBlue rounded-xl">
                       <img

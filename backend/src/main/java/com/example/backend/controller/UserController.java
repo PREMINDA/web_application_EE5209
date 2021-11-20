@@ -8,7 +8,7 @@ import com.example.backend.exception.domain.user.EmailExistException;
 import com.example.backend.exception.domain.user.ExceptionHandling;
 import com.example.backend.exception.domain.user.UserNameExistException;
 import com.example.backend.exception.domain.user.UserNotFoundException;
-import com.example.backend.service.userservice.UserService;
+import com.example.backend.service.UserService;
 import com.example.backend.utility.JWTTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
