@@ -9,11 +9,15 @@ import HeaderComponent from "./Components/Header/HeaderComponent";
 import DashBoard from "./Pages/DashBoard/DashBoard";
 import GameDetail from "./Pages/GameDetail/GameDetail";
 import cart from "./Pages/Cart/cart";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
+  useEffect(() => {
+    document.title = "Instant GAMING"
+ }, []);
   return (
     <Router>
-      <>
+      <div class="flex flex-col h-screen justify-between">
         <HeaderComponent />
         <main className="py-3">
           <Route path="/login" component={LoginPage} />
@@ -24,7 +28,8 @@ function App() {
           <Route path="/cart" component={cart} />
           <Route exact path="/" component={Home} />
         </main>
-      </>
+        <Footer/>
+      </div>
     </Router>
   );
 }

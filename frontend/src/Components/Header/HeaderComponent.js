@@ -7,6 +7,7 @@ import procolor from "../../Config/color";
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import CartDownComponent from "../CartDropDown/CartDropDown";
+import shoplogo from "../../Images/shoplogo.png"
 
 const navigation = [
   { name: "Home", href: "/", current: false },
@@ -50,13 +51,13 @@ const HeaderComponent = () => {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                    alt="Workflow"
+                    src={shoplogo}
+                    alt="GAME"
                   />
                   <img
                     className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                    alt="Workflow"
+                    src={shoplogo}
+                    alt="GAME"
                   />
                 </div>
                 <div className="hidden sm:block sm:ml-6">

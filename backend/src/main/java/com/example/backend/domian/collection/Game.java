@@ -1,47 +1,18 @@
 package com.example.backend.domian.collection;
 
+import com.example.backend.domian.OrderItem.OrderItem;
+import com.example.backend.domian.comment.Comment.Comment;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
 @Entity
 public class Game implements Serializable {
 
-    public Game(){
-    }
 
-    public Game(
-                      String gameId,
-                      String gameName,
-                      String description,
-                      String storyLine,
-                      String[] systemRequirements,
-                      String[] developerInformation,
-                      String price,
-                      String imagePaths,
-                      Boolean availability,
-                      Integer rating,
-                      String[] category,
-                      Date uploadDate,
-                      Date releaseDate,
-                      Integer stockCount) {
-
-        this.gameId = gameId;
-        this.gameName = gameName;
-        this.description = description;
-        this.storyLine = storyLine;
-        this.systemRequirements = systemRequirements;
-        this.developerInformation = developerInformation;
-        this.price = price;
-        this.imagePaths = imagePaths;
-        this.availability = availability;
-        this.rating = rating;
-        this.category = category;
-        this.uploadDate = uploadDate;
-        this.releaseDate = releaseDate;
-        this.stockCount = stockCount;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,6 +38,41 @@ public class Game implements Serializable {
     private Integer rating;//
     private String[] category;
     private Integer stockCount;
+
+    @OneToMany(cascade = CascadeType.ALL,targetEntity = Comment.class)
+    @JoinColumn(name="fk",referencedColumnName = "id")
+    private List<Comment> Comments ;
+
+    public Game(){
+    }
+
+
+    public Game(Long id, String gameId, String gameName, String description, String storyLine, String[] systemRequirements, String[] developerInformation, String price, String imagePaths, Date uploadDate, Date releaseDate, Boolean availability, Integer rating, String[] category, Integer stockCount, List<Comment> comments) {
+        this.id = id;
+        this.gameId = gameId;
+        this.gameName = gameName;
+        this.description = description;
+        this.storyLine = storyLine;
+        this.systemRequirements = systemRequirements;
+        this.developerInformation = developerInformation;
+        this.price = price;
+        this.imagePaths = imagePaths;
+        this.uploadDate = uploadDate;
+        this.releaseDate = releaseDate;
+        this.availability = availability;
+        this.rating = rating;
+        this.category = category;
+        this.stockCount = stockCount;
+        Comments = comments;
+    }
+
+//    public void getTotal() {
+//        double sum = 0.0;
+//        for (Comment comment : Comments) {
+//            sum += comment.getRating();
+//        }
+//        this.rating = (Integer)(sum/Comments.size());
+//    }
 
     public Long getId() {
         return id;
@@ -187,6 +193,14 @@ public class Game implements Serializable {
 
     public void setStockCount(Integer stockCount) {
         this.stockCount = stockCount;
+    }
+
+    public List<Comment> getComments() {
+        return Comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        Comments = comments;
     }
 
     @Override

@@ -20,7 +20,7 @@ const Home = () => {
         style={{ width: "80%", background: procolr.maincolor }}
         className=" h-full grid justify-self-center mx-auto "
       >
-        <Slider></Slider>
+        <Slider gameList={games}></Slider>
         <h2 className="mt-8 text-white">Latest Games</h2>
         <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 justify-items-center mt-8">
           {games &&

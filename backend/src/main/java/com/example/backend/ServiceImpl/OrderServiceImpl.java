@@ -2,6 +2,7 @@ package com.example.backend.ServiceImpl;
 
 import com.example.backend.domian.order.Order;
 import com.example.backend.dto.OrderDTO;
+import com.example.backend.enumeration.OrderStatus;
 import com.example.backend.exception.domain.order.OrderNotFoundException;
 import com.example.backend.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,16 @@ public class OrderServiceImpl {
 
     public void insert(Order order) {
         repository.save(order);
+
+    }
+
+    public Order changeStatus(long id){
+        Order order = repository.findById(id).get();
+        order.setStatus(OrderStatus.DELIVERED);
+        repository.save(order);
+        return order;
+
+
     }
 
     public void delete(Long id) {

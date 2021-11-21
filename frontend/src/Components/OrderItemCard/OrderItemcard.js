@@ -2,7 +2,7 @@ import React from 'react';
 import Seperator from '../Seperator/Seperator';
 const OrderItemcard = ({data}) => {
     return (
-        <div className="h-full min-w-min rounded-xl mx-2 bg-lightBlue ">
+        <div style={{height:"316px",width:"236px",minWidth:"236px"}} className="rounded-xl mx-2 bg-lightBlue ">
             <img
           style={{ height: "140px", objectFit: "cover" }}
           src={

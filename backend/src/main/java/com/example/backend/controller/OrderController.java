@@ -33,6 +33,11 @@ public class OrderController {
         service.insert(order);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Order> changeStatus(@PathVariable Long id){
+        return ResponseEntity.ok().body(service.changeStatus(id));
+    }
+
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {

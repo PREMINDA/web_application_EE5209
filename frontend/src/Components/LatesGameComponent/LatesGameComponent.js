@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import procolor from "../../Config/color";
 
 const LatesGame = ({ style, game }) => {
-  const onClickGame = () => {};
 
   return (
     <Link className="no-underline" to={`/collection/${game.id}`}>

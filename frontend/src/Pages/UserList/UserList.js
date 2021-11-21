@@ -30,11 +30,10 @@ const UserList = () => {
   const dispatch = useDispatch();
   const userListData = useSelector((state) => state.userDetail);
   const { users } = userListData;
-
   const newAddUser = useSelector((state) => state.newUser);
   const { addnewUser } = newAddUser;
 
-  //editedUser success Msg
+   //editedUser success Msg
   const editUserMsg = useSelector((state) => state.userEdit);
   const { success, loading } = editUserMsg;
 
@@ -44,7 +43,7 @@ const UserList = () => {
     }
     dispatch(userList());
     setLogUser(JSON.parse(localStorage.getItem("userInfo")));
-  }, [success, addnewUser, dispatch]);
+  }, [success, addnewUser, dispatch,loading]);
 
   //Close new added user msg
   function closeModal() {
@@ -150,9 +149,9 @@ const UserList = () => {
             />
           ))
         ) : (
-          <div className="w-screen h-screen flex justify-center flex-wrap content-center">
-            <RotateSpinner size={80} color="#00F0FF" loading={loading} />
-          </div>
+          <div style={{height:"780px",width:"1800px"}} className=" flex justify-center flex-wrap content-center">
+                    <RotateSpinner size={80} color="#00F0FF" loading={loading} />
+                </div>
         )}
       </div>
     </div>

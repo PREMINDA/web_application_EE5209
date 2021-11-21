@@ -3,6 +3,9 @@ package com.example.backend.controller;
 
 import com.example.backend.domian.HttpResponse;
 import com.example.backend.domian.collection.Game;
+import com.example.backend.domian.comment.Comment.Comment;
+import com.example.backend.dto.CommentDTO;
+import com.example.backend.dto.GameDTO;
 import com.example.backend.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +34,12 @@ public class GameController {
         return new ResponseEntity<Game>(newGame, HttpStatus.OK);
     }
 
+    @PostMapping("/addcomment/{id}")
+    public ResponseEntity<Comment> uploadGame(@PathVariable long id,@RequestBody Comment comment) throws IOException {
+        Comment comment1 = gameService.addComment(id,comment);
+        return new ResponseEntity<Comment>(comment1, HttpStatus.OK);
+    }
+
     @PutMapping("/addimage/{id}")
     public ResponseEntity<HttpResponse> uploadImage(@PathVariable("id") long id,@RequestParam(value = "images",required = false) MultipartFile[] images) throws IOException {
 
@@ -47,9 +56,15 @@ public class GameController {
 
 
     @GetMapping("/list")
-    public ResponseEntity<List<Game>> getAllGames(){
-        List<Game> gameList = gameService.getGameList();
+    public ResponseEntity<List<GameDTO>> getAllGames(){
+        List<GameDTO> gameList = gameService.getGameList();
         return new ResponseEntity<>(gameList,HttpStatus.OK);
+    }
+
+    @GetMapping("/comment/{id}")
+    public ResponseEntity<List<CommentDTO>> getComments(@PathVariable("id") long id){
+        List<CommentDTO> comments = gameService.getComment(id);
+        return new ResponseEntity<>(comments,HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

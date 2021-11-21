@@ -36,7 +36,7 @@ const Register = ({ history }) => {
     } else {
       dispatch(userRegister(inputValue));
       // dispatch(login({ username: inputValue.username, password: inputValue.password }))
-      history.push("/");
+      history.push("/login");
     }
   };
 
@@ -68,17 +68,17 @@ const Register = ({ history }) => {
             value={firstName}
             name="firstName"
             type="text"
-            icon="fas fa-key"
+            icon="fas fa-signature"
             margin={8}
             onChange={handleChange}
           />
 
           <TextInputComponent
             placeholder={"Last Name"}
-            value={lastName}
+            value={lastName}  
             name="lastName"
             type="text"
-            icon="fas fa-key"
+            icon="fas fa-signature"
             margin={8}
             onChange={handleChange}
           />
@@ -88,7 +88,7 @@ const Register = ({ history }) => {
             value={email}
             name="email"
             type="text"
-            icon="fas fa-key"
+            icon="far fa-envelope" 
             margin={8}
             onChange={handleChange}
           />
@@ -106,7 +106,7 @@ const Register = ({ history }) => {
             value={reEnterPasword}
             name="repassword"
             type="password"
-            icon="fas fa-key"
+            icon="fas fa-sync-alt" 
             margin={8}
             onChange={(e) => setreEnterPasword(e.target.value)}
           />

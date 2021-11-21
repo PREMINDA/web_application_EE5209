@@ -111,3 +111,18 @@ export const orderItems = (obj) => async (dispatch) => {
           }
     });
   } 
+
+  export const changeOrderStatus=(id) =>async(dispatch)=>{
+
+ 
+    await axios.put(`/orders/${id}`)
+    .then().catch(function(error){
+        if (error.response) {
+            console.log(error.request);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log("Error", error.message);
+          }
+    });
+  } 

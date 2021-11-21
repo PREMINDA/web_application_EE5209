@@ -83,7 +83,6 @@ const InforComponent = ({ sys, dev, gameId }) => {
               className="mt-3"
               style={{ display: "flex", justifyContent: "center" }}
             >
-              <Button title={"Buy Now"} />
             </div>
           </div>
         </div>

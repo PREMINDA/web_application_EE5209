@@ -34,7 +34,7 @@ import {
     }
   };
 
-  export const deletOrder = (state = {}, action) => {
+  export const deletOrderred = (state = {loading:false}, action) => {
     switch (action.type) {
       case DELETE_ITEM_REQUEST:
         return { loading: true };

@@ -1,6 +1,11 @@
 package com.example.backend.ServiceImpl;
 
 import com.example.backend.domian.collection.Game;
+import com.example.backend.domian.comment.Comment.Comment;
+import com.example.backend.domian.order.Order;
+import com.example.backend.dto.CommentDTO;
+import com.example.backend.dto.GameDTO;
+import com.example.backend.dto.OrderDTO;
 import com.example.backend.repository.GameRepository;
 import com.example.backend.service.GameService;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -16,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -48,10 +54,18 @@ public class GameServiceImpl implements GameService {
         return newGame;
     }
 
-    public List<Game> getGameList()
+    @Override
+    public List<GameDTO> getGameList()
     {
+
         List<Game> games = gamesRepository.findAll();
-        return games;
+        return games.stream().map(GameDTO::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CommentDTO> getComment(Long id){
+        Game game = gamesRepository.findById(id).get();
+        return game.getComments().stream().map(CommentDTO::new).collect(Collectors.toList());
     }
 
     public void deleteGame(Long id)
@@ -74,6 +88,15 @@ public class GameServiceImpl implements GameService {
         setLogo(images,game.getGameName());
 
     }
+
+    @Override
+    public Comment addComment(Long id,Comment comment){
+        Game game = gamesRepository.findById(id).get();
+        game.getComments().add(comment);
+        gamesRepository.save(game);
+        return comment;
+    }
+
 
     public Game getSelectGame (Long id)
     {

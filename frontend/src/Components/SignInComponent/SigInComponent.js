@@ -4,20 +4,31 @@ import TextInputComponent from "../TextInputComponent/TextInputComponent";
 import SignInButton from "../Button/SignInButton";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/action/userAction.js";
+import PopUpWarn from "../PopUpWarn/PopUpWarn";
 
 const SigInComponent = ({ history }) => {
   const [inputValue, setInputValue] = useState({ username: "", password: "" });
   const { username, password } = inputValue;
   const dispatch = useDispatch();
+  const [isOpen,setIsOpen] = useState(false);
   const userLoginData = useSelector((state) => state.userLogin);
+  const registerUser = useSelector((state) => state.userRegister);
   //loading, error,
   const { userInfo } = userLoginData;
-
+  const {sucsses} = registerUser;
   useEffect(() => {
     if (userInfo) {
       history.push("/");
     }
-  }, [userInfo, history]);
+    if(sucsses === true){
+      setIsOpen(true);
+    }
+  }, [userInfo, history,registerUser]);
+
+  const close=()=>
+  {
+    setIsOpen(false)
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -81,6 +92,7 @@ const SigInComponent = ({ history }) => {
           </a>
         </div>
       </div>
+      <PopUpWarn isOpen={isOpen} closeModal={close} message="Registeration Complete.Use Your Username and Password to Login"/>
     </div>
   );
 };

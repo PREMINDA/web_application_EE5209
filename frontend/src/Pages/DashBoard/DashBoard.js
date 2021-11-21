@@ -18,12 +18,13 @@ import UserList from "../UserList/UserList";
 import GameList from "../GameList/GameList";
 
 const DashBoard = ({ match, history }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   //const userListData = useSelector((state) => state.userDetail);
-  //const { users } = userListData;
-  useEffect(() => {
-    dispatch(userList());
-  });
+  //const { users } = userListData;\
+
+  // useEffect(() => {
+  //   dispatch(userList());
+  // });
 
   return (
     <div className="flex flex-row pt-12">

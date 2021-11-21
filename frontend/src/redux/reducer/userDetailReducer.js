@@ -23,14 +23,14 @@ export const userDetailReducer = (state = { users: [] }, action) => {
   }
 };
 
-export const userDeleteReducer = (state = {}, action) => {
+export const userDeleteReducer = (state = {loading1:false}, action) => {
   switch (action.type) {
     case USER_DELETE_REQUEST:
-      return { loading: true };
+      return { loading1: true };
     case USER_DELETE_SUCCESS:
-      return { loading: false, success: action.payload };
+      return { loading1: false, success: action.payload };
     case USER_DELETE_FAIL:
-      return { loading: false, error: action.payload };
+      return { loading1: false, error: action.payload };
     default:
       return state;
   }

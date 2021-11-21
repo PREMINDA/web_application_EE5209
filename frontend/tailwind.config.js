@@ -22,6 +22,7 @@ module.exports = {
         maincolor: "#080A31",
         lightBlue: "#191B43",
         pricingcolor: "#00F0FF",
+        avgreen: "#26ff00",
       }),
     },
   },
