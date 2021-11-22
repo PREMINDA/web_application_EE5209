@@ -18,7 +18,7 @@ public class GameDTO {
     private String imagePaths;//
     private Date releaseDate;//
     private Boolean availability;
-    private Integer rating;//
+    private Double rating;//
     private String[] category;
     private Integer stockCount;
 
@@ -34,11 +34,26 @@ public class GameDTO {
         this.imagePaths = game.getImagePaths();
         this.releaseDate = game.getReleaseDate();
         this.availability = game.getAvailability();
-        this.rating = game.getRating();
+        this.rating = getTotalRating(game.getComments());
         this.category = game.getCategory();
         this.stockCount = game.getStockCount();
 
 
+    }
+
+    public double getTotalRating(List<Comment> commentsTo) {
+        double sum = 0.0;
+        if(commentsTo == null)
+        {
+            return 0;
+        }
+        else
+        {
+            for (Comment comment : commentsTo) {
+                sum += comment.getRating();
+            }
+            return (sum/commentsTo.size());
+        }
     }
 
     public String getStoryLine() {
@@ -98,11 +113,11 @@ public class GameDTO {
         this.availability = availability;
     }
 
-    public Integer getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 

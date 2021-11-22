@@ -36,6 +36,7 @@ public class GameController {
 
     @PostMapping("/addcomment/{id}")
     public ResponseEntity<Comment> uploadGame(@PathVariable long id,@RequestBody Comment comment) throws IOException {
+        System.out.println(comment);
         Comment comment1 = gameService.addComment(id,comment);
         return new ResponseEntity<Comment>(comment1, HttpStatus.OK);
     }

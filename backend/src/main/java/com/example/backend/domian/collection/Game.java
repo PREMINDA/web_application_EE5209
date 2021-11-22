@@ -1,6 +1,5 @@
 package com.example.backend.domian.collection;
 
-import com.example.backend.domian.OrderItem.OrderItem;
 import com.example.backend.domian.comment.Comment.Comment;
 
 import javax.persistence.*;
@@ -41,7 +40,7 @@ public class Game implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL,targetEntity = Comment.class)
     @JoinColumn(name="fk",referencedColumnName = "id")
-    private List<Comment> Comments ;
+    private List<Comment> comments;
 
     public Game(){
     }
@@ -63,16 +62,10 @@ public class Game implements Serializable {
         this.rating = rating;
         this.category = category;
         this.stockCount = stockCount;
-        Comments = comments;
+        this.comments = comments;
     }
 
-//    public void getTotal() {
-//        double sum = 0.0;
-//        for (Comment comment : Comments) {
-//            sum += comment.getRating();
-//        }
-//        this.rating = (Integer)(sum/Comments.size());
-//    }
+
 
     public Long getId() {
         return id;
@@ -196,11 +189,11 @@ public class Game implements Serializable {
     }
 
     public List<Comment> getComments() {
-        return Comments;
+        return comments;
     }
 
     public void setComments(List<Comment> comments) {
-        Comments = comments;
+        this.comments = comments;
     }
 
     @Override

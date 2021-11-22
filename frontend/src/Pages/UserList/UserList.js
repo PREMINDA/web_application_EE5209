@@ -113,6 +113,7 @@ const UserList = () => {
           Fragment={Fragment}
           closeModal={closeModal}
           tag={["User ID", "User Name", "Role"]}
+          msg="User"
         />
       )}
       <PopUpWarn

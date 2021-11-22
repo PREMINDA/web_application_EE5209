@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-const Popup = ({ ditail, isOpen, closeModal, Fragment, tag }) => {
+const Popup = ({ ditail, isOpen, closeModal, Fragment, tag,msg }) => {
   return (
     <div>
       <Transition appear show={isOpen} as={Fragment}>
@@ -44,7 +44,7 @@ const Popup = ({ ditail, isOpen, closeModal, Fragment, tag }) => {
                   as="h3"
                   className="text-2xl mb-4 font-medium leading-6 text-gray-900"
                 >
-                  Successfully Added New User
+                  Successfully Added New {msg}
                 </Dialog.Title>
                 <div className="mt-2">
                   {ditail ? (

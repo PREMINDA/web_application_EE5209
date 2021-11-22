@@ -21,10 +21,6 @@ public class Comment {
     @Column(nullable = false)
     private Double rating;
 
-    @ManyToOne
-    @JoinColumn(name = "game_com_id")
-    private Game game;
-
     public Comment() {
     }
 
@@ -33,7 +29,7 @@ public class Comment {
         this.name = name;
         this.comment = comment;
         this.rating = rating;
-        this.game = game;
+
     }
 
     public Long getId() {
@@ -68,11 +64,13 @@ public class Comment {
         this.rating = rating;
     }
 
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", comment='" + comment + '\'' +
+                ", rating=" + rating +
+                '}';
     }
 }

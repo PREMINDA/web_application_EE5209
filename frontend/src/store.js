@@ -19,6 +19,7 @@ import { newUserReducer } from "./redux/reducer/newUserReducer";
 import { newGameReducer } from "./redux/reducer/newCollectionReducer";
 import { cartReducer } from "./redux/reducer/cartReducer";
 import {order,orderList,deletOrderred} from "./redux/reducer/cartItemOrderReducer"
+import {commentList,postComment} from "./redux/reducer/commentReducer"
 const reducer = combineReducers({
   userDetail: userDetailReducer,
   userLogin: userLoginReducer,
@@ -32,7 +33,9 @@ const reducer = combineReducers({
   cart: cartReducer,
   orderItem:order,
   orderListItem:orderList,
-  deletOrder: deletOrderred
+  deletOrder: deletOrderred,
+  Comment:commentList,
+  newcomment:postComment
 });
 
 const cartItemFromStorage = localStorage.getItem("cartItem")

@@ -22,10 +22,10 @@ const Cart = () => {
         </h1>
       ) : (
         <div className="h-full">
-          <div style={{height:"660px"}} className=" overflow-y-auto">
+          <div style={{height:"630px"}} className="border-b-2 overflow-y-auto">
             {cartItems.map((game) => <CartItemComponent key={game.game.id} game={game} />)}
           </div>
-          <div className="justify-items-stretch h-44 w-full absolute inset-x-0 bottom-0 flex justify-center">
+          <div className="justify-items-stretch h-44 w-full absolute inset-x-0 bottom-10 flex justify-center">
            <Checkout func={checkout} cartitems={cartItems}/>
           </div>
         </div>

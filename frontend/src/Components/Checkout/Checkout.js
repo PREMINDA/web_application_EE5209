@@ -13,7 +13,7 @@ const totalCal=()=>{
     return val
 }
 
-totalCal();
+    totalCal();
     
     return (
         <div className="w-96 h-36 border-2 border-white  justify-self-auto rounded-xl">

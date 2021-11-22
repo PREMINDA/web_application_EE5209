@@ -110,6 +110,7 @@ const GameList = () => {
           Fragment={Fragment}
           closeModal={closeModal}
           tag={["Game Name", "Game ID", "Price"]}
+          msg="Game"
         />
       )}
       <ImageAddPopUp
